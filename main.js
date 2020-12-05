@@ -70,37 +70,34 @@ agregarGrillaAHTML()
 
 // ------------------------ CLICKEAR EL EMOJI
 
-const creoDivEmoji = (x, y) => {
 
-}
+// const clickeable = () => {
+//   const emojiEnHTML = document.querySelectorAll(".imagen-gatito");
 
-const clickeable = () => {
-  const emojiEnHTML = document.querySelectorAll(".imagen-gatito");
-
-  for (let emoji of emojiEnHTML) {
-    emoji.onclick = () => {
-      emoji.classList.toggle("clickeable");
-      console.log ("HIZO CLICK")
-    };
-  }
-};
+//   for (let emoji of emojiEnHTML) {
+//     emoji.onclick = () => {
+//       emoji.classList.toggle("clickeable");
+//       console.log ("HIZO CLICK")
+//     };
+//   }
+// };
 
 
 // ------------------------------------INICIO MODALES
-// const modalBienvenida = document.querySelector("#contenedor-modal-bienvenida");
-// const AJugar = document.getElementById("boton-jugar");
-// const botonCruz = document.querySelector(".delete");
-// const modalDificultad = document.querySelector("#contenedor-modal-dificultad");
-// const botonCerrarDificultad = document.querySelector("#cerrar-dificultad");
+const modalBienvenida = document.querySelector("#contenedor-modal-bienvenida");
+const AJugar = document.getElementById("boton-jugar");
+const botonCruz = document.querySelector(".delete");
+const modalDificultad = document.querySelector("#contenedor-modal-dificultad");
+const botonCerrarDificultad = document.querySelector("#cerrar-dificultad");
 
-// const ocultarBienvenida = () => {
-//   modalBienvenida.classList.add("ocultar");
-// };
+const ocultarBienvenida = () => {
+  modalBienvenida.classList.add("ocultar");
+};
 
-// const ocultarSeleccionDificultad = () => {
-//   modalDificultad.classList.add("ocultar");
-// };
+const ocultarSeleccionDificultad = () => {
+  modalDificultad.classList.add("ocultar");
+};
 
-// AJugar.onclick = () => {
-//   ocultarBienvenida();
-//};
+AJugar.onclick = () => {
+  ocultarBienvenida();
+};
