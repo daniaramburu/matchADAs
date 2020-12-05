@@ -1,0 +1,127 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(img/Fondo-Arco-Iris.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .grilla {
+    position: relative;
+    margin: auto;
+  }
+  
+  #modal-bienvenida {
+    position: absolute;
+    z-index: 11111;
+  }
+  
+  #modal-tarjeta {
+    width: 500px;
+  }
+  
+  #texto {
+    margin: 0 25px 0 25px;
+  }
+  
+  #modal-texto {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  
+  }
+  
+  #modal-controles {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  #modal-controles h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  #boton-jugar {
+    background-color: #d81b60;
+    margin-left: 350px;
+  }
+  
+  #texto-juegoTerminado {
+    display: flex;
+    justify-content: center;
+  }
+  
+  #nuevo-juego {
+    margin-left: 110px;
+  }
+  
+  .is-primary {
+    background-color: #d81b60 !important;
+  }
+  
+  .grilla > div {
+    width: 80px;
+    height: 80px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: absolute;
+    background-color: #ff5cb849;
+  }
+  /* .contenedor-grillas {
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 3px solid #ff5cb8c5;
+    background: #ff5cb849;
+  } */
+  
+  /* MODALES */
+  #modal-bienvenida {
+    position: absolute;
+    z-index: 11111;
+  }
+  
+  #modal-tarjeta {
+    width: 500px;
+  }
+  
+  #texto {
+    margin: 0 25px 0 25px;
+  }
+  
+  #modal-texto {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  #modal-controles {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  #modal-controles h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  #boton-jugar {
+    background-color: #d81b60;
+    margin-left: 350px;
+  }
+  
+  .boton-dificultad {
+    background-color: #d81b60 !important;
+  }
+  
+  #modal-card-foot {
+    justify-content: center;
+  }
