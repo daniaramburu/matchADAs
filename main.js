@@ -22,6 +22,7 @@ botonFacil.onclick = () => {
   
   botonMedio.onclick = () => {
      comenzarJuegoSinMatchesMedio();
+     ocultarSeleccionDificultad()
   
     // ocultarBotones();
     // reiniciarJuego.classList.add("medio");
@@ -29,6 +30,7 @@ botonFacil.onclick = () => {
   
   botonDificil.onclick = () => {
      comenzarJuegoSinMatchesDificil();
+     ocultarSeleccionDificultad()
     // reiniciarJuego.classList.add("dificil");
     // clickeable();
     // console.log(clickeable());
@@ -54,6 +56,7 @@ botonFacil.onclick = () => {
   const comenzarJuegoSinMatchesDificil = () => {
     do {
       //vaciarGrilla();
+      console.log(generarGrilla(7, 7))
       generarGrilla(7, 7);
       agregarGrillaAHTML(7, 7);
     } while (buscarBloqueInicial());
@@ -85,7 +88,7 @@ botonFacil.onclick = () => {
 
 
 
-const items = ["🐔", "🐣", "🐤", "🐥"];
+const items = ["🐔", "🐣", "🐤", "🐥",'🦉','🦢'];
 
 let grilla = [];
 
@@ -131,6 +134,7 @@ const agregarGrillaAHTML = (ancho) => {
   const anchoDeGrilla = 50 * ancho;
   grillaEnHTML.style.width = `${anchoDeGrilla}px`;
   const listaDeEmojis = grilla;
+  grillaEnHTML.innerHTML = "";
   for (let i = 0; i < listaDeEmojis.length; i++) {
     for (let j = 0; j < listaDeEmojis[i].length; j++) {
       grillaEnHTML.appendChild(generarCuadrado(i, j, listaDeEmojis));
