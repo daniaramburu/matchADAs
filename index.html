@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <title>MatchADA</title>
 </head>
+
 <body>
-     <!-- <button id="nuevo-juego">Nuevo Juego</button> -->
-     <button id="reiniciar-juego">Reiniciar Juego</button>
-     <!-- <button id="facil" class="ocultar">Facil</button>
-     <button id="medio" class="ocultar">Medio</button>
-     <button id="dificil" class="ocultar">Dificil</button> -->
- 
-     
-     <!-- -------------------------------------Inicio Modal Bienvenida -->
- 
- 
- 
-     <!-- <div id="contenedor-modal-bienvenida">
+    
+    <!-- -------------------------------------Inicio Modal Bienvenida -->
+
+
+
+    <!-- <div id="contenedor-modal-bienvenida">
          <div id="modal-bienvenida" class="modal is-active">
              <div class="modal-background"></div>
              <div id="modal-tarjeta" class="modal-card">
@@ -53,7 +49,7 @@
          </div>
      </div>
      <!----------------------------------------------------- Inicio Modal Dificultades -->
-     <!-- <div id="contenedor-modal-dificultad">
+    <!-- <div id="contenedor-modal-dificultad">
          <div class="modal-dificultad modal is-active">
              <div class="modal-background">
                  <div id="modal-tarjeta" class="modal-card">
@@ -76,36 +72,51 @@
              </div>
          </div>
      </div>
-  -->
-     <!-- FIN MODALES -->
+  
+    <!-- FIN MODALES -->
 
- <!--- INICIO BARRA PUNTAJE------>
- <div></div>
- <!--- FIN BARRA PUNTAJE-------->
 
-     <!-- INCIO GRILLA -->
- 
-     <div class="grilla">
-     </div>
- 
- 
-     <!-- FIN GRILLA -->
- <!--- INICIO BARRA TIMER------> 
- <!--- FIN BARRA TIMER------>
-     <!-- boton para cambiar posiciones  -->
-     <button id="cambiar-posiciones"></button>
- 
- 
- 
- 
- 
-     <!-- INICIO TIMER -->
-     <button id="buscar-matches">Buscar Matches</button>
-     <button id="tiempo">0:00</button>
-     <!-- FIN TIMER -->
- 
- 
- 
-     <script src="main.js"></script>
+<div class="contenedor-general">
+    <h1 class="titulo">MatchADAs</h1>
+
+    <!--- INICIO BARRA ARRIBA--->
+
+    <!-----puntaje------>
+
+    <div class="contenedor-puntaje">
+<p>Combo x</p>
+<p>Puntos: </p>
+    </div>
+    
+    <!--- FIN BARRA PUNTAJE-------->
+
+    <!-- INCIO GRILLA -->
+
+    <div class="grilla">
+    </div>
+
+    <!-- FIN GRILLA -->
+
+    <!--- INICIO BARRA TIMER------>
+    <div class="contenedor-tiempo">
+        <p class="contenedor-tiempo"></p>
+    </div>
+    </div>
+
+    <!--- FIN BARRA TIMER------>
+
+    <!-- boton para cambiar posiciones  -->
+    <button id="cambiar-posiciones"></button>
+
+
+    <!-- INICIO TIMER -->
+    <button id="buscar-matches">Buscar Matches</button>
+    <button id="tiempo">0:00</button>
+    <!-- FIN TIMER -->
+
+
+
+    <script src="main.js"></script>
 </body>
+
 </html>
