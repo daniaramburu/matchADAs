@@ -82,7 +82,6 @@ agregarGrillaAHTML()
 //   }
 // };
 
-
 // ------------------------------------INICIO MODALES
 const modalBienvenida = document.querySelector("#contenedor-modal-bienvenida");
 const AJugar = document.getElementById("boton-jugar");
