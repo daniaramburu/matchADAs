@@ -11,10 +11,12 @@ const contenedorBotonDificil = document.getElementById(
 );
 const gatitosSeleccionados = document.querySelectorAll(".seleccionado");
 let gatitoGuardadoEnClickAnterior = null;
+const contenedorGrilla = document.querySelector('.contenedor-grilla')
 
 botonFacil.onclick = () => {
   comenzarJuegoSinMatchesFacil();
   ocultarSeleccionDificultad();
+  contenedorGrilla.classList.add('grilla-facil')
 
   // reiniciarJuego.classList.add("facil");
 };
@@ -22,7 +24,7 @@ botonFacil.onclick = () => {
 botonMedio.onclick = () => {
   comenzarJuegoSinMatchesMedio();
   ocultarSeleccionDificultad();
-
+  contenedorGrilla.classList.add('grilla-media')
   // ocultarBotones();
   // reiniciarJuego.classList.add("medio");
 };
@@ -30,6 +32,7 @@ botonMedio.onclick = () => {
 botonDificil.onclick = () => {
   comenzarJuegoSinMatchesDificil();
   ocultarSeleccionDificultad();
+  contenedorGrilla.classList.add('grilla-dificil')
   // reiniciarJuego.classList.add("dificil");
   // clickeable();
   // console.log(clickeable());
@@ -82,7 +85,7 @@ const buscarBloqueInicial = () => {
   return false;
 };
 
-const items = ["🐔", "🐣", "🐤", "🐥", "🦉", "🦢"];
+const items = ["🐔", "🐣", "🐤", "🐥", "🐦", "💩"];
 
 let grilla = [];
 
