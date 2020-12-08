@@ -102,6 +102,8 @@ const obtenerItemAlAzar = (items) => {
 
 // ----------- GENERAR GRILLA
 
+//podriamos cambiar el nombre a generarGrillaJs ?
+
 const generarGrilla = (ancho, alto) => {
   grilla = [];
   for (let i = 0; i < ancho; i++) {
@@ -144,6 +146,11 @@ const agregarGrillaAHTML = (ancho) => {
 };
 
 
+
+
+
+
+//esta funcion es para el futuro tal vez.
 // ------------------------ CLICKEAR EL EMOJI
 
 const creoDivEmoji = (x, y) => {};
