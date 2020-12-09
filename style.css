@@ -69,6 +69,15 @@ body {
     background-color: #d81b60 !important;
 }
 
+
+/* saco flex y pongo div ubicado con position*/
+
+.grilla>div {
+    position: absolute;
+    transition: top 0.5s, left 0.5s;
+    font-size: 25px;
+}
+
 .grilla-dificil {
     width: 370px;
     height: 370px;
@@ -95,26 +104,6 @@ body {
     margin: auto;
     border-radius: 10px;
 }
-
-.grilla>div {
-    /* box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center; */
-    box-sizing: border-box;
-    position: absolute;
-    font-size: 30px;
-}
-
-
-/* .contenedor-grillas {
-    width: 100%;
-    border-radius: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 3px solid #ff5cb8c5;
-    background: #ff5cb849;
-  } */
 
 
 /* MODALES */
@@ -164,42 +153,20 @@ body {
 }
 
 
+/* -------------------------------- FIN MODALES */
+
+.seleccionar {
+    border: solid 3px rgb(31, 29, 29);
+    border-radius: 3px;
+}
+
+
 /* agregue esta clase para bajar un poco el modal de nuevo juego */
 
 .modal-nuevo-juego {
     top: 30px;
 }
 
-
-/* -------------------------------- FIN MODALES */
-
-
-/* -------------------- INICIO GATITO CLICKEABLE------------------ */
-
-.imagen-gatito {
-    width: 80%;
-    animation-iteration-count: 1;
-}
-
-.clickeable {
-    animation-name: clickeable;
-    animation-duration: 1s;
-}
-
-@keyframes clickeable {
-    20% {
-        transform: scale(0.5);
-    }
-}
-
-
-/* -------------------- FIN GATITO CLICKEABLE------------------ */
-
 .ocultar {
     display: none;
-}
-
-.seleccionado {
-    border: 1px solid rgba(39, 35, 35, 0.623);
-    transform: scale(1.2, 1.2);
 }
