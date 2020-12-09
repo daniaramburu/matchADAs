@@ -12,83 +12,77 @@ const contenedorBotonDificil = document.getElementById(
 const gatitosSeleccionados = document.querySelectorAll(".seleccionado");
 let gatitoGuardadoEnClickAnterior = null;
 
-
 botonFacil.onclick = () => {
-     comenzarJuegoSinMatchesFacil();
-     ocultarSeleccionDificultad()
-   
-    // reiniciarJuego.classList.add("facil");
-  };
-  
-  botonMedio.onclick = () => {
-     comenzarJuegoSinMatchesMedio();
-     ocultarSeleccionDificultad()
-  
-    // ocultarBotones();
-    // reiniciarJuego.classList.add("medio");
-  };
-  
-  botonDificil.onclick = () => {
-     comenzarJuegoSinMatchesDificil();
-     ocultarSeleccionDificultad()
-    // reiniciarJuego.classList.add("dificil");
-    // clickeable();
-    // console.log(clickeable());
-  };
-  
+  comenzarJuegoSinMatchesFacil();
+  ocultarSeleccionDificultad();
 
-  const comenzarJuegoSinMatchesFacil = () => {
-    do {
-      console.log(generarGrilla(9, 9));
-      generarGrilla(9, 9);
-      agregarGrillaAHTML(9, 9);
-    } while (buscarBloqueInicial());
-  };
-  
-  const comenzarJuegoSinMatchesMedio = () => {
-    do {
-      // vaciarGrilla();
-      generarGrilla(8, 8);
-      agregarGrillaAHTML(8, 8);
-    } while (buscarBloqueInicial());
-  };
-  
-  const comenzarJuegoSinMatchesDificil = () => {
-    do {
-      //vaciarGrilla();
-      console.log(generarGrilla(7, 7))
-      generarGrilla(7, 7);
-      agregarGrillaAHTML(7, 7);
-    } while (buscarBloqueInicial());
-  };
+  // reiniciarJuego.classList.add("facil");
+};
 
+botonMedio.onclick = () => {
+  comenzarJuegoSinMatchesMedio();
+  ocultarSeleccionDificultad();
 
+  // ocultarBotones();
+  // reiniciarJuego.classList.add("medio");
+};
 
-  const buscarBloqueInicial = () => {
-    for (let i = 0; i < grilla.length; i++) {
-      for (let j = 0; j < grilla[i].length; j++) {
-        if (
-          grilla[i][j] === grilla[i][j + 1] &&
-          grilla[i][j + 1] === grilla[i][j + 2]
-        ) {
-          return true;
-        }
-        if (
-          grilla[i + 1] &&
-          grilla[i + 2] &&
-          grilla[i][j] === grilla[i + 1][j] &&
-          grilla[i][j] === grilla[i + 2][j]
-        ) {
-          return true;
-        }
+botonDificil.onclick = () => {
+  comenzarJuegoSinMatchesDificil();
+  ocultarSeleccionDificultad();
+  // reiniciarJuego.classList.add("dificil");
+  // clickeable();
+  // console.log(clickeable());
+};
+
+const comenzarJuegoSinMatchesFacil = () => {
+  do {
+    console.log(generarGrilla(9, 9));
+    generarGrilla(9, 9);
+    agregarGrillaAHTML(9, 9);
+  } while (buscarBloqueInicial());
+};
+
+const comenzarJuegoSinMatchesMedio = () => {
+  do {
+    // vaciarGrilla();
+    generarGrilla(8, 8);
+    agregarGrillaAHTML(8, 8);
+  } while (buscarBloqueInicial());
+};
+
+const comenzarJuegoSinMatchesDificil = () => {
+  do {
+    //vaciarGrilla();
+    console.log(generarGrilla(7, 7));
+    generarGrilla(7, 7);
+    agregarGrillaAHTML(7, 7);
+  } while (buscarBloqueInicial());
+};
+
+const buscarBloqueInicial = () => {
+  for (let i = 0; i < grilla.length; i++) {
+    for (let j = 0; j < grilla[i].length; j++) {
+      if (
+        grilla[i][j] === grilla[i][j + 1] &&
+        grilla[i][j + 1] === grilla[i][j + 2]
+      ) {
+        return true;
+      }
+      if (
+        grilla[i + 1] &&
+        grilla[i + 2] &&
+        grilla[i][j] === grilla[i + 1][j] &&
+        grilla[i][j] === grilla[i + 2][j]
+      ) {
+        return true;
       }
     }
-    return false;
-  };
+  }
+  return false;
+};
 
-
-
-const items = ["🐔", "🐣", "🐤", "🐥",'🦉','🦢'];
+const items = ["🐔", "🐣", "🐤", "🐥", "🦉", "🦢"];
 
 let grilla = [];
 
@@ -145,12 +139,10 @@ const agregarGrillaAHTML = (ancho) => {
   // console.log("aca esta la lista de mierda", listaDeEmojis);
 };
 
-
 //no funciona
 // const escucharClicks = () => {
-//   const todosLosCuadrados = document.querySelector(`div[data-x='${x}'][data-y='${y}']`) // aca tengo elegir cuadrados 
+//   const todosLosCuadrados = document.querySelector(`div[data-x='${x}'][data-y='${y}']`) // aca tengo elegir cuadrados
 //   // console.log(todosLosCuadrados)
-  
 
 //   let primerCuadrado = '' // empieza false hasta que le dan valor
 //   let segundoCuadrado = ''
@@ -171,34 +163,29 @@ const agregarGrillaAHTML = (ancho) => {
 //   }
 // }
 
-
-
 ////////////////////////////////////
 const cuadradoClickeado = (e) => {
   let cuadradoClickeado = document.querySelector(".seleccionar");
 
   //si esta seleccionado
   if (cuadradoClickeado) {
-      if (sonAdyacentes(cuadradoClickeado, e.target)) {
-          intercambiarCuadrados(cuadradoClickeado, e.target);
-          if (buscarBloque()) {
-              console.log("si hay match ,borrarlos");
-              borrarMatches();
-          } else {
-
-              intercambiarCuadrados(cuadradoClickeado, e.target);
-          }
+    if (sonAdyacentes(cuadradoClickeado, e.target)) {
+      intercambiarCuadrados(cuadradoClickeado, e.target);
+      if (buscarBloqueInicial()) {
+        console.log("si hay match ,borrarlos");
+        colorearMatches();
       } else {
-
-          cuadradoClickeado.classList.remove("seleccionar");
-          e.target.classList.add("seleccionar");
+        intercambiarCuadrados(cuadradoClickeado, e.target);
       }
-  } else {
-
-      console.log('cuadrado selccionado')
+    } else {
+      cuadradoClickeado.classList.remove("seleccionar");
       e.target.classList.add("seleccionar");
+    }
+  } else {
+    console.log("cuadrado selccionado");
+    e.target.classList.add("seleccionar");
 
-      //borrarMatches();
+    //borrarMatches();
   }
 };
 
@@ -224,7 +211,7 @@ const cuadradoClickeado = (e) => {
 //   // aqui modifico la grilla en JS PARA QUE LA FUNCION BUSCAR //MATCHES FUNCIONE BIEN. 1.59 MIN
 //   let variableTemporal = grilla[datax1][datay1] //ACA NECESITO NUMEROS
 //   grilla[datax1][datay1] = grilla[datax2][datay2]
-//   grilla[datax2][datay2] = variableTemporal 
+//   grilla[datax2][datay2] = variableTemporal
 
 //   // aca modifico la grilla en HTML
 //    elem1.style.top = `${datax2 * tamanio}px` //intercambio posiciones multiplicando
@@ -250,7 +237,6 @@ const intercambiarCuadrados = (cuadrado1, cuadrado2) => {
   // Si quiero que 1 ocupe el espacio que antes ocupaba 2
   // La nueva posicion de 1 debe ser data2 * tamanio
 
-
   //  modifico la grilla en JS
   let variableTemporal = grilla[datax1][datay1];
   grilla[datax1][datay1] = grilla[datax2][datay2];
@@ -259,21 +245,20 @@ const intercambiarCuadrados = (cuadrado1, cuadrado2) => {
   //  modifico la grilla en HTML
 
   if (datax1 === datax2 && (datay1 === datay2 + 1 || datay1 === datay2 - 1)) {
-      cuadrado1.style.left = `${datay2 * tamanio}px`;
-      cuadrado2.style.left = `${datay1 * tamanio}px`;
-      cuadrado1.dataset.y = datay2;
-      cuadrado2.dataset.y = datay1;
+    cuadrado1.style.left = `${datay2 * tamanio}px`;
+    cuadrado2.style.left = `${datay1 * tamanio}px`;
+    cuadrado1.dataset.y = datay2;
+    cuadrado2.dataset.y = datay1;
   } else if (
-      datay1 === datay2 &&
-      (datax1 === datax2 + 1 || datax1 === datax2 - 1)
+    datay1 === datay2 &&
+    (datax1 === datax2 + 1 || datax1 === datax2 - 1)
   ) {
-      cuadrado1.style.top = `${datax2 * tamanio}px`;
-      cuadrado2.style.top = `${datax1 * tamanio}px`;
-      cuadrado1.dataset.x = datax2;
-      cuadrado2.dataset.x = datax1;
+    cuadrado1.style.top = `${datax2 * tamanio}px`;
+    cuadrado2.style.top = `${datax1 * tamanio}px`;
+    cuadrado1.dataset.x = datax2;
+    cuadrado2.dataset.x = datax1;
   }
 };
-
 
 const sonAdyacentes = (cuadrado1, cuadrado2) => {
   const datax1 = Number(cuadrado1.dataset.x);
@@ -281,10 +266,10 @@ const sonAdyacentes = (cuadrado1, cuadrado2) => {
   const datay1 = Number(cuadrado1.dataset.y);
   const datay2 = Number(cuadrado2.dataset.y);
   if (
-    (datax1 === datax2 && datay1 === datay2 + 1) ||  
-    (datax1 === datax2 && datay1 === datay2 - 1) ||  
-    (datay1 === datay2 && datax1 === datax2 + 1) ||  
-    (datay1 === datay2 && datax1 === datax2 - 1)     
+    (datax1 === datax2 && datay1 === datay2 + 1) ||
+    (datax1 === datax2 && datay1 === datay2 - 1) ||
+    (datay1 === datay2 && datax1 === datax2 + 1) ||
+    (datay1 === datay2 && datax1 === datax2 - 1)
   ) {
     console.log("son adyacentes");
     return true;
@@ -297,38 +282,36 @@ const sonAdyacentes = (cuadrado1, cuadrado2) => {
 
 
 
-//esta funcion es para el futuro tal vez.
-// ------------------------ CLICKEAR EL EMOJI
-
-const creoDivEmoji = (x, y) => {};
-
-const clickeable = () => {
-  const emojiEnHTML = document.querySelectorAll(".grilla>div");
-
-  for (let emoji of emojiEnHTML) {
-    emoji.onclick = () => {
-      emoji.classList.toggle("clickeable");
-      console.log("HIZO CLICK");
-    };
-  }
-};
+// const colorearMatches = () => {
+//   for (let i = 0; i < matchesHorizontales.length; i++) {
+//     obtenerBloqueDeMatches(matchesHorizontales[i]).style.backgroundColor =
+//       "yellow";
+//   }
+//   for (let i = 0; i < matchesVerticales.length; i++) {
+//     obtenerBloqueDeMatches(matchesVerticales[i]).style.backgroundColor =
+//       "orange";
+//   }
+//   if (!matchesHorizontales.length && !matchesVerticales.length) {
+//     alert("No hay matches :(");
+//   }
+// };
 
 // ------------------------------------INICIO MODALES
 // const modalBienvenida = document.querySelector("#contenedor-modal-bienvenida");
 // const AJugar = document.getElementById("boton-jugar");
 // const botonCruz = document.querySelector(".delete");
- const modalDificultad = document.querySelector("#contenedor-modal-dificultad");
+const modalDificultad = document.querySelector("#contenedor-modal-dificultad");
 //  console.log(modalDificultad)
- //const botonCerrarDificultad = document.querySelector("#cerrar-dificultad");
+//const botonCerrarDificultad = document.querySelector("#cerrar-dificultad");
 
 // const ocultarBienvenida = () => {
- //  modalBienvenida.classList.add("ocultar");
- //};
+//  modalBienvenida.classList.add("ocultar");
+//};
 
- const ocultarSeleccionDificultad = () => {
-   modalDificultad.classList.add("ocultar");
-   //modalDificultad.classList.remove("is-active");
- };
+const ocultarSeleccionDificultad = () => {
+  modalDificultad.classList.add("ocultar");
+  //modalDificultad.classList.remove("is-active");
+};
 
 // AJugar.onclick = () => {
 //   ocultarBienvenida();
