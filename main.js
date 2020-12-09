@@ -116,6 +116,7 @@ const generarGrilla = (ancho, alto) => {
 const generarCuadrado = (x, y, array) => {
     const tamanio = 50;
 
+
     const cuadrado = document.createElement("div");
     cuadrado.dataset.x = x;
     cuadrado.dataset.y = y;
@@ -124,6 +125,7 @@ const generarCuadrado = (x, y, array) => {
     cuadrado.style.left = `${y * tamanio}px`;
     cuadrado.addEventListener("click", cuadradosSeleccionados);
     return cuadrado;
+
 };
 
 // ------------------ GENERAR GRILLA EN HTML
