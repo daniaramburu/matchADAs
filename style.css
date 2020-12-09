@@ -1,78 +1,83 @@
 body {
-    width: 100vw;
-    height: 100vh;
-    background-image: url(img/Fondo-Arco-Iris.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  
-  .grilla {
-    position: relative;
-    margin: auto;
-  }
-  
-  #modal-bienvenida {
-    position: absolute;
-    z-index: 11111;
-  }
-  
-  #modal-tarjeta {
-    width: 500px;
-  }
-  
-  #texto {
-    margin: 0 25px 0 25px;
-  }
-  
-  #modal-texto {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  
-  }
-  
-  #modal-controles {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  #modal-controles h2 {
-    margin-bottom: 10px;
-    font-size: 20px;
-    font-weight: 600;
-  }
-  
-  #boton-jugar {
-    background-color: #d81b60;
-    margin-left: 350px;
-  }
-  
-  #texto-juegoTerminado {
-    display: flex;
-    justify-content: center;
-  }
-  
-  #nuevo-juego {
-    margin-left: 110px;
-  }
-  
-  .is-primary {
-    background-color: #d81b60 !important;
-  }
-  
-  .grilla > div {
-    /* width: 50px;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(img/Fondo-Arco-Iris.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.grilla {
+  position: relative;
+  margin: auto;
+}
+
+#modal-bienvenida {
+  position: absolute;
+  z-index: 11111;
+}
+
+#modal-tarjeta {
+  width: 500px;
+}
+
+#texto {
+  margin: 0 25px 0 25px;
+}
+
+#modal-texto {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#modal-controles {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#modal-controles h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+#boton-jugar {
+  background-color: #d81b60;
+  margin-left: 350px;
+}
+
+#texto-juegoTerminado {
+  display: flex;
+  justify-content: center;
+}
+
+#nuevo-juego {
+  margin-left: 110px;
+}
+
+.is-primary {
+  background-color: #d81b60 !important;
+}
+
+
+
+/* saco flex y pongo div ubicado con position*/
+.grilla > div {
+  position: absolute;
+  transition: top 0.5s, left 0.5s;
+  /* width: 50px;
     height: 50px; */
-    box-sizing: border-box;
+  /* box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
     position: absolute;
-    background-color: #ff5cb849;
-  }
-  /* .contenedor-grillas {
+    background-color: #ff5cb849; */
+}
+
+/* .contenedor-grillas {
     width: 100%;
     border-radius: 10px;
     padding: 10px;
@@ -80,73 +85,79 @@ body {
     border: 3px solid #ff5cb8c5;
     background: #ff5cb849;
   } */
-  
-  /* MODALES */
-  #modal-bienvenida {
-    position: absolute;
-    z-index: 11111;
-  }
-  
-  #modal-tarjeta {
-    width: 500px;
-  }
-  
-  #texto {
-    margin: 0 25px 0 25px;
-  }
-  
-  #modal-texto {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  #modal-controles {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  #modal-controles h2 {
-    margin-bottom: 10px;
-    font-size: 20px;
-    font-weight: 600;
-  }
-  
-  #boton-jugar {
-    background-color: #d81b60;
-    margin-left: 350px;
-  }
-  
-  .boton-dificultad {
-    background-color: #d81b60 !important;
-  }
-  
-  #modal-card-foot {
-    justify-content: center;
-  }
 
-  /* -------------------------------- FIN MODALES */
+/* MODALES */
 
-.seleccionado {
-    border: solid 4px black;
+#modal-bienvenida {
+  position: absolute;
+  z-index: 11111;
+}
+
+#modal-tarjeta {
+  width: 500px;
+}
+
+#texto {
+  margin: 0 25px 0 25px;
+}
+
+#modal-texto {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#modal-controles {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#modal-controles h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+#boton-jugar {
+  background-color: #d81b60;
+  margin-left: 350px;
+}
+
+.boton-dificultad {
+  background-color: #d81b60 !important;
+}
+
+#modal-card-foot {
+  justify-content: center;
+}
+
+/* -------------------------------- FIN MODALES */
+
+.seleccionar {
+  border: solid 4px black;
+}
+
+/* -------------------- INICIO GATITO CLICKEABLE------------------ */
+
+.imagen-gatito {
+  width: 80%;
+  animation-iteration-count: 1;
+}
+
+.clickeable {
+  animation-name: clickeable;
+  animation-duration: 1s;
+}
+
+@keyframes clickeable {
+  20% {
+    transform: scale(0.5);
   }
-  
-  /* -------------------- INICIO GATITO CLICKEABLE------------------ */
-  .imagen-gatito {
-    width: 80%;
-    animation-iteration-count: 1;
-  }
-  .clickeable {
-    animation-name: clickeable;
-    animation-duration: 1s;
-  }
-  @keyframes clickeable {
-    20% {
-      transform: scale(0.5);
-    }
-  }
-  /* -------------------- FIN GATITO CLICKEABLE------------------ */
-  .ocultar {
-    display: none;
-  }
+}
+
+/* -------------------- FIN GATITO CLICKEABLE------------------ */
+
+.ocultar {
+  display: none;
+}
