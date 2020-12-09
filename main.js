@@ -126,7 +126,7 @@ const generarCuadrado = (x, y, array) => {
   cuadrado.innerHTML = array[x][y];
   cuadrado.style.top = `${x * tamanio}px`;
   cuadrado.style.left = `${y * tamanio}px`;
-  //cuadrado.addEventListener("click", seleccionarCuadrado);
+  cuadrado.addEventListener("click", cuadradoClickeado);
   return cuadrado;
 };
 
@@ -142,10 +142,157 @@ const agregarGrillaAHTML = (ancho) => {
       grillaEnHTML.appendChild(generarCuadrado(i, j, listaDeEmojis));
     }
   }
-  console.log("aca esta la lista de mierda", listaDeEmojis);
+  // console.log("aca esta la lista de mierda", listaDeEmojis);
 };
 
 
+//no funciona
+// const escucharClicks = () => {
+//   const todosLosCuadrados = document.querySelector(`div[data-x='${x}'][data-y='${y}']`) // aca tengo elegir cuadrados 
+//   // console.log(todosLosCuadrados)
+  
+
+//   let primerCuadrado = '' // empieza false hasta que le dan valor
+//   let segundoCuadrado = ''
+
+//   for (let cuadrado of todosLosCuadrados) {
+//     cuadrado.onclick = (e) => {
+//       console.log("primer click")
+//       primerCuadrado = e.target //me guardo el click en una variable
+//       for (let cuadrado2 of todosLosCuadrados) {
+//         cuadrado2.onclick = (event) => {
+//           console.log("segundo click")
+//           segundoCuadrado = event.target // guardo el 2do click en otro cuadrado
+//           console.log(primerCuadrado, segundoCuadrado)
+
+//         }
+//       }
+//     }
+//   }
+// }
+
+
+
+////////////////////////////////////
+const cuadradoClickeado = (e) => {
+  let cuadradoClickeado = document.querySelector(".seleccionar");
+
+  //si esta seleccionado
+  if (cuadradoClickeado) {
+      if (sonAdyacentes(cuadradoClickeado, e.target)) {
+          intercambiarCuadrados(cuadradoClickeado, e.target);
+          if (buscarBloque()) {
+              console.log("si hay match ,borrarlos");
+              borrarMatches();
+          } else {
+
+              intercambiarCuadrados(cuadradoClickeado, e.target);
+          }
+      } else {
+
+          cuadradoClickeado.classList.remove("seleccionar");
+          e.target.classList.add("seleccionar");
+      }
+  } else {
+
+      console.log('cuadrado selccionado')
+      e.target.classList.add("seleccionar");
+
+      //borrarMatches();
+  }
+};
+
+///////////////////////////////////////
+
+// boton.onclick = () => {
+//   const elemento1 = document.querySelector(`div[data-x="0"][data-y="0"]`) //hay que cambiar, tiene que ser el primer click
+//   const elemento2 = document.querySelector(`div[data-x="0"][data-y="1"]`) //hay que cambiar, tiene que ser el segundo elemento
+//   intercambiarCuadrados(elemento1, elemento2)
+// }
+
+// const intercambiarCuadrados = (elem1, elem2) => {
+//   const tamanio = 50
+//   // La posicion de 1 es data1 * tamanio
+//   // Si quiero que 1 ocupe el espacio que antes ocupaba 2
+//   // La nueva posicion de 1 debe ser data2 * tamanio
+
+//   const datax1 = Number(elem1.dataset.x) //NECESITO NUMEROS
+//   const datax2 = Number(elem2.dataset.x)
+//   const datay1 = Number(elem1.dataset.y)
+//   const datay2 = Number(elem2.dataset.y)
+
+//   // aqui modifico la grilla en JS PARA QUE LA FUNCION BUSCAR //MATCHES FUNCIONE BIEN. 1.59 MIN
+//   let variableTemporal = grilla[datax1][datay1] //ACA NECESITO NUMEROS
+//   grilla[datax1][datay1] = grilla[datax2][datay2]
+//   grilla[datax2][datay2] = variableTemporal 
+
+//   // aca modifico la grilla en HTML
+//    elem1.style.top = `${datax2 * tamanio}px` //intercambio posiciones multiplicando
+//    elem2.style.top = `${datax1 * tamanio}px`  //intercambio posiciones multiplicando
+//    elem1.style.left = `${datay2 * tamanio}px`  //intercambio posiciones multiplicando
+//    elem2.style.left = `${datay1 * tamanio}px`  //intercambio posiciones multiplicando
+
+//   elem1.dataset.x = datax2 //intercambio data html
+//   elem1.dataset.y = datay2  //intercambio data html
+//   elem2.dataset.y = datay1 //intercambio data html
+//   elem2.dataset.x = datax1  //intercambio data html
+
+//}
+//////////////////////////////////////////////////////////////////////////////////////////////////
+const intercambiarCuadrados = (cuadrado1, cuadrado2) => {
+  const datax1 = Number(cuadrado1.dataset.x);
+  const datax2 = Number(cuadrado2.dataset.x);
+  const datay1 = Number(cuadrado1.dataset.y);
+  const datay2 = Number(cuadrado2.dataset.y);
+
+  const tamanio = 50;
+  // La posicion de 1 es data1 * tamanio
+  // Si quiero que 1 ocupe el espacio que antes ocupaba 2
+  // La nueva posicion de 1 debe ser data2 * tamanio
+
+
+  //  modifico la grilla en JS
+  let variableTemporal = grilla[datax1][datay1];
+  grilla[datax1][datay1] = grilla[datax2][datay2];
+  grilla[datax2][datay2] = variableTemporal;
+
+  //  modifico la grilla en HTML
+
+  if (datax1 === datax2 && (datay1 === datay2 + 1 || datay1 === datay2 - 1)) {
+      cuadrado1.style.left = `${datay2 * tamanio}px`;
+      cuadrado2.style.left = `${datay1 * tamanio}px`;
+      cuadrado1.dataset.y = datay2;
+      cuadrado2.dataset.y = datay1;
+  } else if (
+      datay1 === datay2 &&
+      (datax1 === datax2 + 1 || datax1 === datax2 - 1)
+  ) {
+      cuadrado1.style.top = `${datax2 * tamanio}px`;
+      cuadrado2.style.top = `${datax1 * tamanio}px`;
+      cuadrado1.dataset.x = datax2;
+      cuadrado2.dataset.x = datax1;
+  }
+};
+
+
+const sonAdyacentes = (cuadrado1, cuadrado2) => {
+  const datax1 = Number(cuadrado1.dataset.x);
+  const datax2 = Number(cuadrado2.dataset.x);
+  const datay1 = Number(cuadrado1.dataset.y);
+  const datay2 = Number(cuadrado2.dataset.y);
+  if (
+    (datax1 === datax2 && datay1 === datay2 + 1) ||  
+    (datax1 === datax2 && datay1 === datay2 - 1) ||  
+    (datay1 === datay2 && datax1 === datax2 + 1) ||  
+    (datay1 === datay2 && datax1 === datax2 - 1)     
+  ) {
+    console.log("son adyacentes");
+    return true;
+  } else {
+    console.log("NO son adyacentes");
+    return false;
+  }
+};
 
 
 
@@ -156,7 +303,7 @@ const agregarGrillaAHTML = (ancho) => {
 const creoDivEmoji = (x, y) => {};
 
 const clickeable = () => {
-  const emojiEnHTML = document.querySelectorAll(".imagen-gatito");
+  const emojiEnHTML = document.querySelectorAll(".grilla>div");
 
   for (let emoji of emojiEnHTML) {
     emoji.onclick = () => {
@@ -171,7 +318,7 @@ const clickeable = () => {
 // const AJugar = document.getElementById("boton-jugar");
 // const botonCruz = document.querySelector(".delete");
  const modalDificultad = document.querySelector("#contenedor-modal-dificultad");
- console.log(modalDificultad)
+//  console.log(modalDificultad)
  //const botonCerrarDificultad = document.querySelector("#cerrar-dificultad");
 
 // const ocultarBienvenida = () => {

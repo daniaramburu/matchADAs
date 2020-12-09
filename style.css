@@ -63,7 +63,7 @@ body {
 
 
 /* saco flex y pongo div ubicado con position*/
-.grilla>div {
+.grilla > div {
   position: absolute;
   transition: top 0.5s, left 0.5s;
   /* width: 50px;
@@ -134,7 +134,7 @@ body {
 
 /* -------------------------------- FIN MODALES */
 
-.seleccionado {
+.seleccionar {
   border: solid 4px black;
 }
 
