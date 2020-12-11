@@ -64,17 +64,18 @@ body {
 
 /* saco flex y pongo div ubicado con position*/
 .grilla > div {
-  position: absolute;
-  transition: top 0.5s, left 0.5s;
-  /* width: 50px;
-    height: 50px; */
-  /* box-sizing: border-box;
+    position: absolute;
+    transition: top 0.5s, left 0.5s;
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
     position: absolute;
-    background-color: #ff5cb849; */
+    background-color: #d81b6071;
+    border-radius: 5px;
 }
 
 /* .contenedor-grillas {

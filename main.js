@@ -6,89 +6,88 @@ const reiniciarJuego = document.getElementById("reiniciar-juego");
 const buscarMatches = document.getElementById("buscar-matches");
 const contenedorBotonFacil = document.getElementById("contenedor-boton-facil");
 const contenedorBotonMedio = document.getElementById("contenedor-boton-medio");
-const contenedorBotonDificil = document.getElementById(
-  "contenedor-boton-dificil"
-);
-const gatitosSeleccionados = document.querySelectorAll(".seleccionado");
-let gatitoGuardadoEnClickAnterior = null;
+const contenedorBotonDificil = document.getElementById("contenedor-boton-dificil");
+const divDeGrilla = document.querySelectorAll(".grilla > div");
+
+console.log("aca estan lod div de la grilla",  grillaEnHTML.appendChild)
 
 
 botonFacil.onclick = () => {
-     comenzarJuegoSinMatchesFacil();
-     ocultarSeleccionDificultad()
-   
-    // reiniciarJuego.classList.add("facil");
-  };
-  
-  botonMedio.onclick = () => {
-     comenzarJuegoSinMatchesMedio();
-     ocultarSeleccionDificultad()
-  
-    // ocultarBotones();
-    // reiniciarJuego.classList.add("medio");
-  };
-  
-  botonDificil.onclick = () => {
-     comenzarJuegoSinMatchesDificil();
-     ocultarSeleccionDificultad()
-    // reiniciarJuego.classList.add("dificil");
-    // clickeable();
-    // console.log(clickeable());
-  };
-  
+  comenzarJuegoSinMatchesFacil();
+  ocultarSeleccionDificultad()
 
-  const comenzarJuegoSinMatchesFacil = () => {
-    do {
-      console.log(generarGrilla(9, 9));
-      generarGrilla(9, 9);
-      agregarGrillaAHTML(9, 9);
-    } while (buscarBloqueInicial());
-  };
-  
-  const comenzarJuegoSinMatchesMedio = () => {
-    do {
-      // vaciarGrilla();
-      generarGrilla(8, 8);
-      agregarGrillaAHTML(8, 8);
-    } while (buscarBloqueInicial());
-  };
-  
-  const comenzarJuegoSinMatchesDificil = () => {
-    do {
-      //vaciarGrilla();
-      console.log(generarGrilla(7, 7))
-      generarGrilla(7, 7);
-      agregarGrillaAHTML(7, 7);
-    } while (buscarBloqueInicial());
-  };
+  // reiniciarJuego.classList.add("facil");
+};
+
+botonMedio.onclick = () => {
+  comenzarJuegoSinMatchesMedio();
+  ocultarSeleccionDificultad()
+
+  // ocultarBotones();
+  // reiniciarJuego.classList.add("medio");
+};
+
+botonDificil.onclick = () => {
+  comenzarJuegoSinMatchesDificil();
+  ocultarSeleccionDificultad()
+  // reiniciarJuego.classList.add("dificil");
+  // clickeable();
+  // console.log(clickeable());
+};
 
 
+const comenzarJuegoSinMatchesFacil = () => {
+  do {
+    console.log(generarGrilla(9, 9));
+    generarGrilla(9, 9);
+    agregarGrillaAHTML(9, 9);
+  } while (buscarBloqueInicial());
+};
 
-  const buscarBloqueInicial = () => {
-    for (let i = 0; i < grilla.length; i++) {
-      for (let j = 0; j < grilla[i].length; j++) {
-        if (
-          grilla[i][j] === grilla[i][j + 1] &&
-          grilla[i][j + 1] === grilla[i][j + 2]
-        ) {
-          return true;
-        }
-        if (
-          grilla[i + 1] &&
-          grilla[i + 2] &&
-          grilla[i][j] === grilla[i + 1][j] &&
-          grilla[i][j] === grilla[i + 2][j]
-        ) {
-          return true;
-        }
+const comenzarJuegoSinMatchesMedio = () => {
+  do {
+    // vaciarGrilla();
+    generarGrilla(8, 8);
+    agregarGrillaAHTML(8, 8);
+  } while (buscarBloqueInicial());
+};
+
+const comenzarJuegoSinMatchesDificil = () => {
+  do {
+    //vaciarGrilla();
+    console.log(generarGrilla(7, 7))
+    generarGrilla(7, 7);
+    agregarGrillaAHTML(7, 7);
+  } while (buscarBloqueInicial());
+};
+
+
+
+const buscarBloqueInicial = () => {
+  for (let i = 0; i < grilla.length; i++) {
+    for (let j = 0; j < grilla[i].length; j++) {
+      if (
+        grilla[i][j] === grilla[i][j + 1] &&
+        grilla[i][j + 1] === grilla[i][j + 2]
+      ) {
+        return true;
+      }
+      if (
+        grilla[i + 1] &&
+        grilla[i + 2] &&
+        grilla[i][j] === grilla[i + 1][j] &&
+        grilla[i][j] === grilla[i + 2][j]
+      ) {
+        return true;
       }
     }
-    return false;
-  };
+  }
+  return false;
+};
 
 
 
-const items = ["🐔", "🐣", "🐤", "🐥",'🦉','🦢'];
+const items = ["🐔", "🐣", "🐤", "🐥", '🦉', '🦢'];
 
 let grilla = [];
 
@@ -300,7 +299,9 @@ const sonAdyacentes = (cuadrado1, cuadrado2) => {
 //esta funcion es para el futuro tal vez.
 // ------------------------ CLICKEAR EL EMOJI
 
-const creoDivEmoji = (x, y) => {};
+const creoDivEmoji = (x, y) => {
+  
+ };
 
 const clickeable = () => {
   const emojiEnHTML = document.querySelectorAll(".grilla>div");
@@ -313,23 +314,32 @@ const clickeable = () => {
   }
 };
 
-// ------------------------------------INICIO MODALES
-// const modalBienvenida = document.querySelector("#contenedor-modal-bienvenida");
-// const AJugar = document.getElementById("boton-jugar");
-// const botonCruz = document.querySelector(".delete");
+clickeable();
+
+const obtenerCuadrado = (x, y) => {
+  return (`.cuadrado[data-x="${x}"][data-y="${y}"]`)
+}
+
+
+// // ------------------------------------INICIO MODALES
+const modalBienvenida = document.querySelector("#contenedor-modal-bienvenida");
+const AJugar = document.getElementById("boton-jugar");
+const botonCruz = document.querySelector(".delete");
  const modalDificultad = document.querySelector("#contenedor-modal-dificultad");
 //  console.log(modalDificultad)
  //const botonCerrarDificultad = document.querySelector("#cerrar-dificultad");
 
-// const ocultarBienvenida = () => {
- //  modalBienvenida.classList.add("ocultar");
- //};
+const ocultarBienvenida = () => {
+  modalBienvenida.classList.add("ocultar");
+ };
 
  const ocultarSeleccionDificultad = () => {
    modalDificultad.classList.add("ocultar");
    //modalDificultad.classList.remove("is-active");
  };
 
-// AJugar.onclick = () => {
-//   ocultarBienvenida();
-//};
+
+
+AJugar.onclick = () => {
+  ocultarBienvenida();
+};
