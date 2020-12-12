@@ -33,8 +33,7 @@ botonDificil.onclick = () => {
     ocultarSeleccionDificultad();
     contenedorGrilla.classList.add('grilla-dificil')
         // reiniciarJuego.classList.add("dificil");
-        // clickeable();
-        // console.log(clickeable());
+
 };
 
 const comenzarJuegoSinMatchesFacil = () => {
@@ -177,7 +176,7 @@ const cuadradosSeleccionados = (e) => {
             intercambiarCuadrados(cuadradoClickeado, e.target);
             if (buscarBloqueInicial()) {
                 console.log("si hay match ,borrarlos");
-                colorearMatches();
+                borrarMatches();
             } else {
                 intercambiarCuadrados(cuadradoClickeado, e.target);
             }
@@ -292,16 +291,19 @@ const buscarMatchHorizontal = () => {
                 grilla[i][j + 1] === grilla[i][j + 2]
             ) {
                 const div = document.querySelector(`div[data-x="${i}"][data-y="${j}"]`);
-                div.style.backgroundColor = "yellow";
+                //div.style.backgroundColor = "yellow";
+                div.innerHTML = "";
                 const divDos = document.querySelector(
                     `div[data-x="${i}"][data-y="${j + 1}"]`
                 );
 
-                divDos.style.backgroundColor = "yellow";
+                //divDos.style.backgroundColor = "yellow";
+                divDos.innerHTML = "";
                 const divTres = document.querySelector(
                     `div[data-x="${i}"][data-y="${j + 2}"]`
                 );
-                divTres.style.backgroundColor = "yellow";
+                //divTres.style.backgroundColor = "yellow";
+                divTres.innerHTML = "";
             }
         }
     }
@@ -316,29 +318,38 @@ const buscarMatchVertical = () => {
                 grilla[i][j] === grilla[i + 2][j]
             ) {
                 const uno = document.querySelector(`div[data-x="${i}"][data-y="${j}"]`);
-                uno.style.backgroundColor = "red";
+                //uno.style.backgroundColor = "red";
+                uno.innerHTML = "";
                 const dos = document.querySelector(
                     `div[data-x="${i + 1}"][data-y="${j}"]`
                 );
-                dos.style.backgroundColor = "red";
+                //dos.style.backgroundColor = "red";
+                dos.innerHTML = "";
 
                 const tres = document.querySelector(
                     `div[data-x="${i + 2}"][data-y="${j}"]`
                 );
-                tres.style.backgroundColor = "red";
+                //tres.style.backgroundColor = "red";
+                tres.innerHTML = "";
             }
         }
     }
 };
 
-const colorearMatches = () => {
+const borrarMatches = () => {
     buscarMatchVertical()
     buscarMatchHorizontal()
 }
 
-buscarMatches.onclick = () => {
-    colorearMatches();
-};
+// buscarMatches.onclick = () => {
+//     colorearMatches();
+// };
+
+
+// const obtenerCuadrado = (x, y) => {
+//     return $(`.cuadrado[data-x="${x}"][data-y="${y}"]`)
+// }
+
 
 
 // ------------------------------------INICIO MODALES
