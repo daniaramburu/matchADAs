@@ -284,6 +284,8 @@ const sonAdyacentes = (cuadrado1, cuadrado2) => {
 
 
 const buscarMatchHorizontal = () => {
+    //encuentra los match de manera horizontal, y los borra
+    //de html y js
     for (let i = 0; i < grilla.length; i++) {
         for (let j = 0; j < grilla[i].length; j++) {
             if (
@@ -292,23 +294,31 @@ const buscarMatchHorizontal = () => {
             ) {
                 const div = document.querySelector(`div[data-x="${i}"][data-y="${j}"]`);
                 //div.style.backgroundColor = "yellow";
-                div.innerHTML = "";
+
+                div.innerHTML = ""; //elimina los match en html
+                grilla[i][j] = null; //elimina los match en js
                 const divDos = document.querySelector(
                     `div[data-x="${i}"][data-y="${j + 1}"]`
                 );
 
                 //divDos.style.backgroundColor = "yellow";
-                divDos.innerHTML = "";
+                divDos.innerHTML = ""; //elimina los match en html
+                grilla[i][j + 1] = null; //elimina los match en js
                 const divTres = document.querySelector(
                     `div[data-x="${i}"][data-y="${j + 2}"]`
                 );
                 //divTres.style.backgroundColor = "yellow";
-                divTres.innerHTML = "";
+                divTres.innerHTML = ""; //elimina los match en html
+                grilla[i][j + 2] = null; //elimina los match en js
             }
         }
     }
+
 };
 const buscarMatchVertical = () => {
+
+    //encuentra los match de manera vertical, y los borra
+    //de html y js
     for (let i = 0; i < grilla.length; i++) {
         for (let j = 0; j < grilla[i].length; j++) {
             if (
@@ -319,26 +329,31 @@ const buscarMatchVertical = () => {
             ) {
                 const uno = document.querySelector(`div[data-x="${i}"][data-y="${j}"]`);
                 //uno.style.backgroundColor = "red";
-                uno.innerHTML = "";
+                uno.innerHTML = ""; //elimina los elementos en html
+                grilla[i][j] = null; //elimina los elementos en js
                 const dos = document.querySelector(
                     `div[data-x="${i + 1}"][data-y="${j}"]`
                 );
                 //dos.style.backgroundColor = "red";
-                dos.innerHTML = "";
+                dos.innerHTML = ""; //elimina los elementos en html
+                grilla[i + 1][j] = null; //elimina los elementos en js
 
                 const tres = document.querySelector(
                     `div[data-x="${i + 2}"][data-y="${j}"]`
                 );
                 //tres.style.backgroundColor = "red";
-                tres.innerHTML = "";
+                tres.innerHTML = ""; //elimina los elementos en html
+                grilla[i + 2][j] = null; //elimina los elementos en js
             }
         }
     }
+
 };
 
 const borrarMatches = () => {
     buscarMatchVertical()
     buscarMatchHorizontal()
+    console.log(grilla) // lo deje para ver como elimina los matches en js
 }
 
 // buscarMatches.onclick = () => {
