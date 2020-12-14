@@ -65,64 +65,9 @@ body {
 /* saco flex y pongo div ubicado con position*/
 .grilla > div {
     position: absolute;
-<<<<<<< HEAD
-    z-index: 11111;
-  }
-  
-  #modal-tarjeta {
-    width: 500px;
-  }
-  
-  #texto {
-    margin: 0 25px 0 25px;
-  }
-  
-  #modal-texto {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  
-  }
-  
-  #modal-controles {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  #modal-controles h2 {
-    margin-bottom: 10px;
-    font-size: 20px;
-    font-weight: 600;
-  }
-  
-  #boton-jugar {
-    background-color: #d81b60;
-    margin-left: 350px;
-  }
-  
-  #texto-juegoTerminado {
-    display: flex;
-    justify-content: center;
-  }
-  
-  #nuevo-juego {
-    margin-left: 110px;
-  }
-  
-  .is-primary {
-    background-color: #d81b60 !important;
-  }
-  
-  .grilla > div {
-    width: 50px;
-    height: 50px;
-    font-size: 30px;
-=======
     transition: top 0.5s, left 0.5s;
     width: 50px;
     height: 50px;
->>>>>>> master
     box-sizing: border-box;
     display: flex;
     justify-content: center;
