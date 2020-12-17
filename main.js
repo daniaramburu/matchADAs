@@ -14,6 +14,7 @@ const contenedorGrilla = document.querySelector('.contenedor-grilla')
 botonFacil.onclick = () => {
     comenzarJuegoSinMatchesFacil();
     ocultarSeleccionDificultad();
+    cuentaRegresiva()
     contenedorGrilla.classList.add('grilla-facil')
 
     // reiniciarJuego.classList.add("facil");
@@ -22,6 +23,7 @@ botonFacil.onclick = () => {
 botonMedio.onclick = () => {
     comenzarJuegoSinMatchesMedio();
     ocultarSeleccionDificultad();
+    cuentaRegresiva()
     contenedorGrilla.classList.add('grilla-media')
 
     // ocultarBotones();
@@ -31,6 +33,7 @@ botonMedio.onclick = () => {
 botonDificil.onclick = () => {
     comenzarJuegoSinMatchesDificil();
     ocultarSeleccionDificultad();
+    cuentaRegresiva()
     contenedorGrilla.classList.add('grilla-dificil')
         // reiniciarJuego.classList.add("dificil");
 
@@ -115,7 +118,6 @@ const generarGrilla = (ancho, alto) => {
 const generarCuadrado = (x, y, array) => {
     const tamanio = 50;
 
-
     const cuadrado = document.createElement("div");
     cuadrado.dataset.x = x;
     cuadrado.dataset.y = y;
@@ -124,7 +126,6 @@ const generarCuadrado = (x, y, array) => {
     cuadrado.style.left = `${y * tamanio}px`;
     cuadrado.addEventListener("click", cuadradosSeleccionados);
     return cuadrado;
-
 };
 
 // ------------------ GENERAR GRILLA EN HTML
@@ -387,4 +388,18 @@ const ocultarSeleccionDificultad = () => {
 AJugar.onclick = () => {
     ocultarBienvenida();
     modalDificultadInterior.classList.add("is-active");
+};
+
+/**************cuenta regresiva */
+let tiempo = 30;
+const tiempoHtml = document.getElementById("tiempo");
+const cuentaRegresiva = () => {
+    tiempoHtml.innerHTML = `0 : ${tiempo}`;
+    if (tiempo > 0) {
+        tiempo--;
+        setTimeout(cuentaRegresiva, 1000);
+    } else {
+        tiempo = 30;
+        mostrarJuegoTerminado();
+    }
 };
