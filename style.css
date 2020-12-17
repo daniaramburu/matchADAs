@@ -13,7 +13,11 @@ body {
     color: #d81b60;
     font-size: 35px;
     text-shadow: 1px 1px #fafafa, 1px -1px #fafafa, -1px -1px #fafafa, -1px 1px #fafafa;
+    padding-top: 50px;
+    margin-bottom: 80px;
 }
+
+
 
 .grilla {
     position: relative;
@@ -71,6 +75,34 @@ body {
 
 
 /* saco flex y pongo div ubicado con position*/
+
+.barra-controles {
+    width: 420px;
+    background-color: #d81b60;
+    border: 2px solid #fafafa;
+    margin: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-family: 'Pacifico', sans-serif;
+    font-size: 22px;
+    color: #fafafa;
+    text-shadow: 1px 1px #424242, 1px -1px #424242, -1px -1px #424242, -1px 1px #424242;
+    display: flex;
+    justify-content: space-between;
+
+    
+}
+
+.cuentas {
+    border: 2px solid rgb(64, 17, 194);
+    display: flex;
+}
+
+.iconos {
+    border: 2px solid green;
+    display: flex;
+    
+}
 
 .grilla>div {
     position: absolute;
