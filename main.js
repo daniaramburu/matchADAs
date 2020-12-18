@@ -338,7 +338,7 @@ const ocultarBienvenida = () => {
   modalJuegoTerminado.classList.add("ocultar");
  };
 
-//  ocultarJuegoTerminado();
+ ocultarJuegoTerminado();
 
  const ocultarSeleccionDificultad = () => {
    modalDificultad.classList.add("ocultar");

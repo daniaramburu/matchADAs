@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <title>MatchADA</title>
 </head>
 
 <body>
     <!-- <button id="nuevo-juego">Nuevo Juego</button> -->
-    <button id="reiniciar-juego">Reiniciar Juego</button>
+    <!-- <button id="reiniciar-juego">Reiniciar Juego</button> -->
     <!-- <button id="facil" class="ocultar">Facil</button>
      <button id="medio" class="ocultar">Medio</button>
      <button id="dificil" class="ocultar">Dificil</button> -->
@@ -106,23 +108,25 @@
      <!-- FIN MODALES -->
  
      <!-- INCIO GRILLA -->
- 
-     <div class="grilla">
-     </div>
- 
+    <section class="seccion-juego">
+        <div class="grilla">
+        </div>
+    
+        <div class="barra-de-tiempo">
+           <i class="fas fa-hourglass-half" aria-hidden="true"></i>
+           <p class="tiempo">0:00</p>
+        </div>
+
+    </section>
  
      <!-- FIN GRILLA -->
  
      <!-- boton para cambiar posiciones  -->
-     <button id="cambiar-posiciones"></button>
- 
- 
- 
- 
+
  
      <!-- INICIO TIMER -->
-     <button id="buscar-matches">Buscar Matches</button>
-     <button id="tiempo">0:00</button>
+     <!-- <button id="buscar-matches">Buscar Matches</button>
+     <button id="tiempo">0:00</button> -->
      <!-- FIN TIMER -->
  
  

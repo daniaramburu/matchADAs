@@ -9,6 +9,33 @@ body {
 .grilla {
   position: relative;
   margin: auto;
+
+}
+
+.barra-de-tiempo {
+    width: 100px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #fafafa;
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 420px auto 0;
+    margin-left: 48%;
+    padding: 10px 10px;
+    background-color: #d81b60;
+    color: #fafafa;
+}
+
+.tiempo {
+  margin-left: 5px;
+
+}
+
+.seccion-juego {
+  /* margin-left: 50%;
+  margin-right: 50%; */
 }
 
 #modal-bienvenida {
