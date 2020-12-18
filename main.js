@@ -323,6 +323,7 @@ const obtenerCuadrado = (x, y) => {
 
 // // ------------------------------------INICIO MODALES
 const modalBienvenida = document.querySelector("#contenedor-modal-bienvenida");
+const modalJuegoTerminado = document.querySelector('#contenedor-modal-final');
 const AJugar = document.getElementById("boton-jugar");
 const botonCruz = document.querySelector(".delete");
  const modalDificultad = document.querySelector("#contenedor-modal-dificultad");
@@ -333,6 +334,12 @@ const ocultarBienvenida = () => {
   modalBienvenida.classList.add("ocultar");
  };
 
+ const ocultarJuegoTerminado = () => {
+  modalJuegoTerminado.classList.add("ocultar");
+ };
+
+//  ocultarJuegoTerminado();
+
  const ocultarSeleccionDificultad = () => {
    modalDificultad.classList.add("ocultar");
    //modalDificultad.classList.remove("is-active");
@@ -342,4 +349,5 @@ const ocultarBienvenida = () => {
 
 AJugar.onclick = () => {
   ocultarBienvenida();
+
 };
