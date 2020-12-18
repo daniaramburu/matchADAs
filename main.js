@@ -178,6 +178,10 @@ const cuadradosSeleccionados = (e) => {
             if (buscarBloqueInicial()) {
                 console.log("si hay match ,borrarlos");
                 borrarMatches();
+                espaciosVaciosJs()
+                espaciosVaciosHtml()
+                console.log(espaciosVaciosHtml())
+
             } else {
                 intercambiarCuadrados(cuadradoClickeado, e.target);
             }
@@ -189,9 +193,41 @@ const cuadradosSeleccionados = (e) => {
         console.log("cuadrado selccionado");
         e.target.classList.add("seleccionar");
 
-        //borrarMatches();
+
     }
 };
+
+
+//encontrar espacios vacios en la grilla y rellenarlos con emojis al azar en js
+const espaciosVaciosJs = () => {
+    for (let i = 0; i < grilla.length; i++) {
+        for (let j = 0; j < grilla[i].length; j++) {
+            if (grilla[i][j] == null) {
+                grilla[i][j] = obtenerItemAlAzar(items)
+                console.log(grilla[i][j] = obtenerItemAlAzar(items))
+
+            }
+        }
+    }
+}
+
+//encontrar espacios vacios en html, retorna true si hay
+const espaciosVaciosHtml = () => {
+        const todosLosCuadrados = document.querySelectorAll('.grilla>div')
+        console.log(todosLosCuadrados)
+
+        for (let cuadrado of todosLosCuadrados) {
+            if (cuadrado.innerHTML === '') {
+                console.log(cuadrado)
+                return true
+            }
+
+        }
+    }
+    //estas funciones las pase por la funcion cuadradosSeleccionados() en la parte de buscarBloqueInicial()
+    //Falta rellenar los espacios vacios en Html
+
+
 
 ///////////////////////////////////////
 
@@ -400,6 +436,6 @@ const cuentaRegresiva = () => {
         setTimeout(cuentaRegresiva, 1000);
     } else {
         tiempo = 30;
-        mostrarJuegoTerminado();
+        // mostrarJuegoTerminado();
     }
 };
