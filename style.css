@@ -13,7 +13,11 @@ body {
     color: #d81b60;
     font-size: 35px;
     text-shadow: 1px 1px #fafafa, 1px -1px #fafafa, -1px -1px #fafafa, -1px 1px #fafafa;
+    padding-top: 50px;
+    margin-bottom: 80px;
 }
+
+
 
 .grilla {
     position: relative;
@@ -71,6 +75,61 @@ body {
 
 
 /* saco flex y pongo div ubicado con position*/
+
+
+/*  BARRA SUPERIOR */
+
+
+.barra-controles {
+    width: 420px;
+    background-color: #d81b60;
+    border: 2px solid #fafafa;
+    margin: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-family: 'Pacifico', sans-serif;
+    font-size: 22px;
+    color: #fafafa;
+    text-shadow: 1px 1px #424242, 1px -1px #424242, -1px -1px #424242, -1px 1px #424242;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cuentas {
+    /* border: 4px solid rgb(64, 17, 194); */
+    display: flex;
+}
+
+.cuentas p {
+    padding: 0 10px;
+}
+
+.iconos {
+    /* border: 4px solid rgb(128, 0, 28); */
+    display: flex;
+}
+
+.iconos button {
+    background-color: transparent;
+    color: #fafafa;
+    border: 0;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.reiniciar i {
+    transform: rotate(0);
+    transition: 0.2s;
+}
+
+.reiniciar:hover i {
+    transform: rotate(-180deg);
+}
+
+
+/*  BARRA SUPERIOR */
+
 
 .grilla>div {
     position: absolute;
