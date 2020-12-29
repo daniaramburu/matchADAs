@@ -143,34 +143,11 @@ const agregarGrillaAHTML = (ancho) => {
     // console.log("aca esta la lista de mierda", listaDeEmojis);
 };
 
-//no funciona
-// const escucharClicks = () => {
-//   const todosLosCuadrados = document.querySelector(`div[data-x='${x}'][data-y='${y}']`) // aca tengo elegir cuadrados
-//   // console.log(todosLosCuadrados)
 
-//   let primerCuadrado = '' // empieza false hasta que le dan valor
-//   let segundoCuadrado = ''
-
-//   for (let cuadrado of todosLosCuadrados) {
-//     cuadrado.onclick = (e) => {
-//       console.log("primer click")
-//       primerCuadrado = e.target //me guardo el click en una variable
-//       for (let cuadrado2 of todosLosCuadrados) {
-//         cuadrado2.onclick = (event) => {
-//           console.log("segundo click")
-//           segundoCuadrado = event.target // guardo el 2do click en otro cuadrado
-//           console.log(primerCuadrado, segundoCuadrado)
-
-//         }
-//       }
-//     }
-//   }
-// }
 
 ////////////////////////////////////
 const cuadradosSeleccionados = (e) => {
     let cuadradoClickeado = document.querySelector(".seleccionar");
-
     //si esta seleccionado
     if (cuadradoClickeado) {
         if (sonAdyacentes(cuadradoClickeado, e.target)) {
@@ -178,12 +155,12 @@ const cuadradosSeleccionados = (e) => {
             if (buscarBloqueInicial()) {
                 console.log("si hay match ,borrarlos");
                 borrarMatches();
-                espaciosVaciosJs()
-                espaciosVaciosHtml()
-                console.log(espaciosVaciosHtml())
-
+                cuadradoClickeado.classList.remove("seleccionar");
+                rellenarEspacios()
             } else {
-                intercambiarCuadrados(cuadradoClickeado, e.target);
+                setTimeout(() => {
+                    intercambiarCuadrados(cuadradoClickeado, e.target)
+                }, 600);
             }
         } else {
             cuadradoClickeado.classList.remove("seleccionar");
@@ -198,74 +175,33 @@ const cuadradosSeleccionados = (e) => {
 };
 
 
-//encontrar espacios vacios en la grilla y rellenarlos con emojis al azar en js
-const espaciosVaciosJs = () => {
-    for (let i = 0; i < grilla.length; i++) {
-        for (let j = 0; j < grilla[i].length; j++) {
-            if (grilla[i][j] == null) {
-                grilla[i][j] = obtenerItemAlAzar(items)
-                console.log(grilla[i][j] = obtenerItemAlAzar(items))
+//rellenar la grilla 
 
-            }
-        }
-    }
-}
-
-//encontrar espacios vacios en html, retorna true si hay
-const espaciosVaciosHtml = () => {
-        const todosLosCuadrados = document.querySelectorAll('.grilla>div')
+const rellenarEspacios = () => {
+        const todosLosCuadrados = document.querySelectorAll('.grilla>div') //seleccionamos cada cuadrado de html
         console.log(todosLosCuadrados)
+        if (buscarBloqueInicial) {
+            for (let cuadrado of todosLosCuadrados) { //recorremos los cuadrados
+                let x = Number(cuadrado.dataset.x) // seleccionamos la data
+                let y = Number(cuadrado.dataset.y) //seleccionamos la data
+                if (cuadrado.innerHTML === '') { //si hay cuadrados vacios
+                    grilla[x][y] = obtenerItemAlAzar(items); // los rellenamos con el array de emojis en js
+                    console.log(grilla[x][y])
+                    setTimeout(() => {
+                        cuadrado.innerHTML = grilla[x][y] //rellenamos los cuadrados vacios en html 
+                        console.log(cuadrado.innerHTML = grilla[x][y])
+                        if (buscarBloqueInicial()) {
+                            rellenarEspacios();
+                            borrarMatches()
 
-        for (let cuadrado of todosLosCuadrados) {
-            if (cuadrado.innerHTML === '') {
-                console.log(cuadrado)
-                return true
+                        }
+                    }, 700); //tiempo que demora en rellenar
+                }
             }
 
         }
     }
-    //estas funciones las pase por la funcion cuadradosSeleccionados() en la parte de buscarBloqueInicial()
-    //Falta rellenar los espacios vacios en Html
-
-
-
-///////////////////////////////////////
-
-// boton.onclick = () => {
-//   const elemento1 = document.querySelector(`div[data-x="0"][data-y="0"]`) //hay que cambiar, tiene que ser el primer click
-//   const elemento2 = document.querySelector(`div[data-x="0"][data-y="1"]`) //hay que cambiar, tiene que ser el segundo elemento
-//   intercambiarCuadrados(elemento1, elemento2)
-// }
-
-// const intercambiarCuadrados = (elem1, elem2) => {
-//   const tamanio = 50
-//   // La posicion de 1 es data1 * tamanio
-//   // Si quiero que 1 ocupe el espacio que antes ocupaba 2
-//   // La nueva posicion de 1 debe ser data2 * tamanio
-
-//   const datax1 = Number(elem1.dataset.x) //NECESITO NUMEROS
-//   const datax2 = Number(elem2.dataset.x)
-//   const datay1 = Number(elem1.dataset.y)
-//   const datay2 = Number(elem2.dataset.y)
-
-//   // aqui modifico la grilla en JS PARA QUE LA FUNCION BUSCAR //MATCHES FUNCIONE BIEN. 1.59 MIN
-//   let variableTemporal = grilla[datax1][datay1] //ACA NECESITO NUMEROS
-//   grilla[datax1][datay1] = grilla[datax2][datay2]
-//   grilla[datax2][datay2] = variableTemporal
-
-//   // aca modifico la grilla en HTML
-//    elem1.style.top = `${datax2 * tamanio}px` //intercambio posiciones multiplicando
-//    elem2.style.top = `${datax1 * tamanio}px`  //intercambio posiciones multiplicando
-//    elem1.style.left = `${datay2 * tamanio}px`  //intercambio posiciones multiplicando
-//    elem2.style.left = `${datay1 * tamanio}px`  //intercambio posiciones multiplicando
-
-//   elem1.dataset.x = datax2 //intercambio data html
-//   elem1.dataset.y = datay2  //intercambio data html
-//   elem2.dataset.y = datay1 //intercambio data html
-//   elem2.dataset.x = datax1  //intercambio data html
-
-//}
-//////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
 const intercambiarCuadrados = (cuadrado1, cuadrado2) => {
     const datax1 = Number(cuadrado1.dataset.x);
     const datax2 = Number(cuadrado2.dataset.x);
@@ -392,15 +328,6 @@ const borrarMatches = () => {
     buscarMatchHorizontal()
     console.log(grilla) // lo deje para ver como elimina los matches en js
 }
-
-// buscarMatches.onclick = () => {
-//     colorearMatches();
-// };
-
-
-// const obtenerCuadrado = (x, y) => {
-//     return $(`.cuadrado[data-x="${x}"][data-y="${y}"]`)
-// }
 
 
 
