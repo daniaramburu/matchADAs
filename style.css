@@ -1,28 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 body {
-  width: 100vw;
-  height: 100vh;
-  background-image: url(img/Fondo-Arco-Iris.png);
-  background-size: cover;
-  background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(img/Fondo-Arco-Iris.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.titulo {
+    text-align: center;
+    font-family: 'Pacifico', sans-serif;
+    color: #d81b60;
+    font-size: 35px;
+    text-shadow: 1px 1px #fafafa, 1px -1px #fafafa, -1px -1px #fafafa, -1px 1px #fafafa;
+    padding-top: 25px;
+    margin-bottom: 80px;
 }
 
 .grilla {
-  position: relative;
-  margin: auto;
-
+    position: relative;
+    margin: auto;
 }
 
 .barra-de-tiempo {
     width: 100px;
-    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 3px solid #fafafa;
     font-size: 20px;
     border-radius: 10px;
-    margin: 420px auto 0;
-    margin-left: 48%;
+    margin: auto;
+    margin-top: 5px;
     padding: 10px 10px;
     background-color: #d81b60;
     color: #fafafa;
@@ -33,159 +42,208 @@ body {
 
 }
 
-.seccion-juego {
-  /* margin-left: 50%;
-  margin-right: 50%; */
-}
-
 #modal-bienvenida {
-  position: absolute;
-  z-index: 11111;
+    position: absolute;
+    z-index: 11111;
 }
 
 #modal-tarjeta {
-  width: 500px;
+    width: 500px;
 }
 
 #texto {
-  margin: 0 25px 0 25px;
+    margin: 0 25px 0 25px;
 }
 
 #modal-texto {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 #modal-controles {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 #modal-controles h2 {
-  margin-bottom: 10px;
-  font-size: 20px;
-  font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 #boton-jugar {
-  background-color: #d81b60;
-  margin-left: 350px;
+    background-color: #d81b60;
+    margin-left: 350px;
 }
 
 #texto-juegoTerminado {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 #nuevo-juego {
-  margin-left: 110px;
+    margin-left: 110px;
 }
 
 .is-primary {
-  background-color: #d81b60 !important;
+    background-color: #d81b60 !important;
 }
-
 
 
 /* saco flex y pongo div ubicado con position*/
-.grilla > div {
-    position: absolute;
-    transition: top 0.5s, left 0.5s;
-    width: 50px;
-    height: 50px;
-    box-sizing: border-box;
+
+
+/*  BARRA SUPERIOR */
+
+
+.barra-controles {
+    width: 420px;
+    background-color: #d81b60;
+    border: 2px solid #fafafa;
+    margin: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-family: 'Pacifico', sans-serif;
+    font-size: 22px;
+    color: #fafafa;
+    text-shadow: 1px 1px #424242, 1px -1px #424242, -1px -1px #424242, -1px 1px #424242;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    position: absolute;
-    background-color: #d81b6071;
-    border-radius: 5px;
+    justify-content: space-between;
 }
 
-/* .contenedor-grillas {
-    width: 100%;
+.cuentas {
+    /* border: 4px solid rgb(64, 17, 194); */
+    display: flex;
+}
+
+.cuentas p {
+    padding: 0 10px;
+}
+
+.iconos {
+    /* border: 4px solid rgb(128, 0, 28); */
+    display: flex;
+}
+
+.iconos button {
+    background-color: transparent;
+    color: #fafafa;
+    border: 0;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.reiniciar i {
+    transform: rotate(0);
+    transition: 0.2s;
+}
+
+.reiniciar:hover i {
+    transform: rotate(-180deg);
+}
+
+
+/*  BARRA SUPERIOR */
+
+
+.grilla>div {
+    position: absolute;
+    transition: top 0.5s, left 0.5s;
+    font-size: 25px;
+}
+
+.grilla-dificil {
+    width: 370px;
+    height: 370px;
+    background-color: rgba(146, 141, 141, 0.562);
+    border: 2px solid #fafafa;
+    margin: auto;
     border-radius: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 3px solid #ff5cb8c5;
-    background: #ff5cb849;
-  } */
+}
+
+.grilla-media {
+    width: 420px;
+    height: 420px;
+    background-color: rgba(146, 141, 141, 0.562);
+    border: 2px solid #fafafa;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.grilla-facil {
+    width: 460px;
+    height: 460px;
+    background-color: rgba(146, 141, 141, 0.562);
+    border: 2px solid #fafafa;
+    margin: auto;
+    border-radius: 10px;
+}
+
 
 /* MODALES */
 
 #modal-bienvenida {
-  position: absolute;
-  z-index: 11111;
+    position: absolute;
+    z-index: 11111;
 }
 
 #modal-tarjeta {
-  width: 500px;
+    width: 500px;
 }
 
 #texto {
-  margin: 0 25px 0 25px;
+    margin: 0 25px 0 25px;
 }
 
 #modal-texto {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 #modal-controles {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 #modal-controles h2 {
-  margin-bottom: 10px;
-  font-size: 20px;
-  font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 #boton-jugar {
-  background-color: #d81b60;
-  margin-left: 350px;
+    background-color: #d81b60;
+    margin-left: 350px;
 }
 
 .boton-dificultad {
-  background-color: #d81b60 !important;
+    background-color: #d81b60 !important;
 }
 
 #modal-card-foot {
-  justify-content: center;
+    justify-content: center;
 }
+
 
 /* -------------------------------- FIN MODALES */
 
 .seleccionar {
-  border: solid 4px black;
+    border: solid 3px rgb(31, 29, 29);
+    border-radius: 3px;
 }
 
-/* -------------------- INICIO GATITO CLICKEABLE------------------ */
 
-.imagen-gatito {
-  width: 80%;
-  animation-iteration-count: 1;
+/* agregue esta clase para bajar un poco el modal de nuevo juego */
+
+.modal-nuevo-juego {
+    top: 30px;
 }
-
-.clickeable {
-  animation-name: clickeable;
-  animation-duration: 1s;
-}
-
-@keyframes clickeable {
-  20% {
-    transform: scale(0.5);
-  }
-}
-
-/* -------------------- FIN GATITO CLICKEABLE------------------ */
 
 .ocultar {
-  display: none;
+    display: none;
 }
