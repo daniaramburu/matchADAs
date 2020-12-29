@@ -13,15 +13,33 @@ body {
     color: #d81b60;
     font-size: 35px;
     text-shadow: 1px 1px #fafafa, 1px -1px #fafafa, -1px -1px #fafafa, -1px 1px #fafafa;
-    padding-top: 50px;
+    padding-top: 25px;
     margin-bottom: 80px;
 }
-
-
 
 .grilla {
     position: relative;
     margin: auto;
+}
+
+.barra-de-tiempo {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #fafafa;
+    font-size: 20px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 5px;
+    padding: 10px 10px;
+    background-color: #d81b60;
+    color: #fafafa;
+}
+
+.tiempo {
+  margin-left: 5px;
+
 }
 
 #modal-bienvenida {

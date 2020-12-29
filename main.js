@@ -6,14 +6,25 @@ const reiniciarJuego = document.getElementById("reiniciar-juego");
 const buscarMatches = document.getElementById("buscar-matches");
 const contenedorBotonFacil = document.getElementById("contenedor-boton-facil");
 const contenedorBotonMedio = document.getElementById("contenedor-boton-medio");
-const contenedorBotonDificil = document.getElementById(
-    "contenedor-boton-dificil"
-);
-const contenedorGrilla = document.querySelector('.contenedor-grilla')
+const contenedorBotonDificil = document.getElementById("contenedor-boton-dificil");
+const contenedorGrilla = document.querySelector('.contenedor-grilla');
+const reloj = document.querySelector('.barra-de-tiempo');
+const modalReiniciar = document.querySelector('.modal-reiniciar');
+const botonInformacion = document.getElementById('boton-info');
+const botonCancelarDeModal = document.getElementById('cancelar');
+const botonReiniciarDeModal = document.getElementById('reiniciar');
+const botonReiniciar = document.querySelector('.reiniciar');
+
+
+
+botonInformacion.onclick = () => {
+    mostrarBienvenida();
+}
 
 botonFacil.onclick = () => {
     comenzarJuegoSinMatchesFacil();
     ocultarSeleccionDificultad();
+    mostrarReloj();
     contenedorGrilla.classList.add('grilla-facil')
 
     // reiniciarJuego.classList.add("facil");
@@ -22,6 +33,8 @@ botonFacil.onclick = () => {
 botonMedio.onclick = () => {
     comenzarJuegoSinMatchesMedio();
     ocultarSeleccionDificultad();
+    mostrarReloj();
+
     contenedorGrilla.classList.add('grilla-media')
 
     // ocultarBotones();
@@ -31,6 +44,8 @@ botonMedio.onclick = () => {
 botonDificil.onclick = () => {
     comenzarJuegoSinMatchesDificil();
     ocultarSeleccionDificultad();
+    mostrarReloj();
+
     contenedorGrilla.classList.add('grilla-dificil')
         // reiniciarJuego.classList.add("dificil");
 
@@ -367,6 +382,7 @@ const borrarMatches = () => {
 
 // ------------------------------------INICIO MODALES
 const modalBienvenida = document.querySelector("#contenedor-modal-bienvenida");
+const modalJuegoTerminado = document.querySelector('#contenedor-modal-final');
 const AJugar = document.getElementById("boton-jugar");
 // const botonCruz = document.querySelector(".delete");
 const modalDificultad = document.querySelector("#contenedor-modal-dificultad");
@@ -374,15 +390,53 @@ const modalDificultadInterior = document.querySelector(".modal-dificultad");
 
 //const botonCerrarDificultad = document.querySelector("#cerrar-dificultad");
 
+AJugar.onclick = () => {
+    ocultarBienvenida();
+    modalDificultadInterior.classList.add("is-active");
+};
+
 const ocultarBienvenida = () => {
     modalBienvenida.classList.add("ocultar");
+};
+
+const mostrarBienvenida = () => {
+    modalBienvenida.classList.remove("ocultar");
 };
 
 const ocultarSeleccionDificultad = () => {
     modalDificultad.classList.add("ocultar");
 };
 
-AJugar.onclick = () => {
-    ocultarBienvenida();
-    modalDificultadInterior.classList.add("is-active");
-};
+const mostrarSeleccionDificultad = () => {
+    modalDificultad.classList.remove("ocultar");
+
+}
+
+const mostrarReloj = () =>{
+    reloj.classList.remove("ocultar");
+}
+
+const mostrarModalReiniciarJuego = () => {
+    modalReiniciar.classList.remove("ocultar");
+    modalReiniciar.classList.add("is-active");
+}
+
+const ocultarModalReiniciarJuego = () => {
+    modalReiniciar.classList.add("ocultar");
+    modalReiniciar.classList.remove("is-active");
+
+}
+
+botonReiniciar.onclick = () => {
+    mostrarModalReiniciarJuego();
+    console.log("esta clickeado")
+}
+
+botonCancelarDeModal.onclick = () => {
+    ocultarModalReiniciarJuego();
+}
+
+botonReiniciarDeModal.onclick = () => {
+    mostrarSeleccionDificultad();
+    ocultarModalReiniciarJuego();
+}

@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
     
@@ -74,6 +76,26 @@
         </div>
     </div>
 
+    <div id="contenedor-modal-reiniciar">
+        <div class="modal-reiniciar modal ocultar">
+            <div class="modal-background">
+                <div id="modal-tarjeta" class="modal-card modal-reiniciar-juego">
+                    <header class="modal-card-head">
+                        <h1 class="modal-card-title">Reiniciar juego?</h1>
+
+                    </header>
+                    <section id="texto-reiniciar-juego" class="modal-card-body">
+                        <p>Perderas todo el puntaje acumulado!</p>
+                    </section>
+                    <footer class="modal-card-foot is-justify-content-center">
+                        <div id="contenedor-boton-cancelar"><button id="cancelar" class="button is-primary ml-4">Cancelar</button></div>
+                        <div id="contenedor-boton-reiniciar is-danger"> <button id="reiniciar" class="button is-primary ml-4">Reiniciar</button></div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- FIN MODALES -->
     <h1 class="titulo">MatchADAs</h1>
     <div class="barra-controles">
@@ -83,7 +105,7 @@
 
         </div>
         <div class="iconos">
-            <button>
+            <button id="boton-info">
                 <i class="fas fa-info-circle"></i>
             </button>
             <button class="reiniciar">
@@ -98,19 +120,12 @@
         </div>
     </div>
 
+    <div class="barra-de-tiempo ocultar">
+        <i class="fas fa-hourglass-half" aria-hidden="true"></i>
+        <p class="tiempo">0:00</p>
+     </div>
 
     <!-- FIN GRILLA -->
-
-
-
-
-
-    <!-- INICIO TIMER -->
-    <button id="buscar-matches">Buscar Matches</button>
-    <button id="tiempo">0:00</button>
-    <!-- FIN TIMER -->
-
-
 
     <script src="main.js"></script>
      
