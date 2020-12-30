@@ -6,15 +6,29 @@ const reiniciarJuego = document.getElementById("reiniciar-juego");
 const buscarMatches = document.getElementById("buscar-matches");
 const contenedorBotonFacil = document.getElementById("contenedor-boton-facil");
 const contenedorBotonMedio = document.getElementById("contenedor-boton-medio");
-const contenedorBotonDificil = document.getElementById(
-    "contenedor-boton-dificil"
-);
-const contenedorGrilla = document.querySelector('.contenedor-grilla')
+const contenedorBotonDificil = document.getElementById("contenedor-boton-dificil");
+const contenedorGrilla = document.querySelector('.contenedor-grilla');
+const reloj = document.querySelector('.barra-de-tiempo');
+const modalReiniciar = document.querySelector('.modal-reiniciar');
+const botonInformacion = document.getElementById('boton-info');
+const botonCancelarDeModal = document.getElementById('cancelar');
+const botonReiniciarDeModal = document.getElementById('reiniciar');
+const botonReiniciar = document.querySelector('.reiniciar');
+
+
+
+botonInformacion.onclick = () => {
+    mostrarBienvenida();
+}
 
 botonFacil.onclick = () => {
     comenzarJuegoSinMatchesFacil();
     ocultarSeleccionDificultad();
+    tiempo = 30
     cuentaRegresiva()
+
+    mostrarReloj();
+
     contenedorGrilla.classList.add('grilla-facil')
 
     // reiniciarJuego.classList.add("facil");
@@ -23,7 +37,12 @@ botonFacil.onclick = () => {
 botonMedio.onclick = () => {
     comenzarJuegoSinMatchesMedio();
     ocultarSeleccionDificultad();
+    tiempo = 30
     cuentaRegresiva()
+
+    mostrarReloj();
+
+
     contenedorGrilla.classList.add('grilla-media')
 
     // ocultarBotones();
@@ -33,7 +52,12 @@ botonMedio.onclick = () => {
 botonDificil.onclick = () => {
     comenzarJuegoSinMatchesDificil();
     ocultarSeleccionDificultad();
+    tiempo = 30
     cuentaRegresiva()
+
+    mostrarReloj();
+
+
     contenedorGrilla.classList.add('grilla-dificil')
         // reiniciarJuego.classList.add("dificil");
 
@@ -186,7 +210,6 @@ const rellenarEspacios = () => {
                 let y = Number(cuadrado.dataset.y) //seleccionamos la data
                 if (cuadrado.innerHTML === '') { //si hay cuadrados vacios
                     grilla[x][y] = obtenerItemAlAzar(items); // los rellenamos con el array de emojis en js
-                    console.log(grilla[x][y])
                     setTimeout(() => {
                         cuadrado.innerHTML = grilla[x][y] //rellenamos los cuadrados vacios en html 
                         console.log(cuadrado.innerHTML = grilla[x][y])
@@ -326,13 +349,14 @@ const buscarMatchVertical = () => {
 const borrarMatches = () => {
     buscarMatchVertical()
     buscarMatchHorizontal()
-    console.log(grilla) // lo deje para ver como elimina los matches en js
+
 }
 
 
 
 // ------------------------------------INICIO MODALES
 const modalBienvenida = document.querySelector("#contenedor-modal-bienvenida");
+const modalJuegoTerminado = document.querySelector('#contenedor-modal-final');
 const AJugar = document.getElementById("boton-jugar");
 // const botonCruz = document.querySelector(".delete");
 const modalDificultad = document.querySelector("#contenedor-modal-dificultad");
@@ -340,13 +364,23 @@ const modalDificultadInterior = document.querySelector(".modal-dificultad");
 
 //const botonCerrarDificultad = document.querySelector("#cerrar-dificultad");
 
+AJugar.onclick = () => {
+    ocultarBienvenida();
+    modalDificultadInterior.classList.add("is-active");
+};
+
 const ocultarBienvenida = () => {
     modalBienvenida.classList.add("ocultar");
+};
+
+const mostrarBienvenida = () => {
+    modalBienvenida.classList.remove("ocultar");
 };
 
 const ocultarSeleccionDificultad = () => {
     modalDificultad.classList.add("ocultar");
 };
+
 
 AJugar.onclick = () => {
     ocultarBienvenida();
@@ -355,14 +389,58 @@ AJugar.onclick = () => {
 
 /**************cuenta regresiva */
 let tiempo = 30;
-const tiempoHtml = document.getElementById("tiempo");
+const tiempoHtml = document.querySelector(".tiempo");
 const cuentaRegresiva = () => {
     tiempoHtml.innerHTML = `0 : ${tiempo}`;
     if (tiempo > 0) {
         tiempo--;
         setTimeout(cuentaRegresiva, 1000);
+
     } else {
-        tiempo = 30;
-        // mostrarJuegoTerminado();
+        //tiempo = 30;
+        mostrarJuegoTerminado();
     }
 };
+const mostrarSeleccionDificultad = () => {
+    modalDificultad.classList.remove("ocultar");
+
+}
+
+const mostrarReloj = () => {
+    reloj.classList.remove("ocultar");
+}
+
+const mostrarModalReiniciarJuego = () => {
+    modalReiniciar.classList.remove("ocultar");
+    modalReiniciar.classList.add("is-active");
+}
+
+const ocultarModalReiniciarJuego = () => {
+    modalReiniciar.classList.add("ocultar");
+    modalReiniciar.classList.remove("is-active");
+
+}
+
+botonReiniciar.onclick = () => {
+    mostrarModalReiniciarJuego();
+    console.log("esta clickeado")
+    tiempo = 0
+}
+
+botonCancelarDeModal.onclick = () => {
+    ocultarModalReiniciarJuego();
+}
+
+botonReiniciarDeModal.onclick = () => {
+
+    mostrarSeleccionDificultad();
+    if (botonReiniciarDeModal) {
+        contenedorGrilla.classList.remove('grilla-facil')
+        contenedorGrilla.classList.remove('grilla-media')
+        contenedorGrilla.classList.remove('grilla-dificil')
+    }
+
+
+    ocultarModalReiniciarJuego();
+
+}
