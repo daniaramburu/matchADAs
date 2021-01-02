@@ -88,6 +88,23 @@ const comenzarJuegoSinMatchesDificil = () => {
     } while (buscarBloqueInicial());
 };
 
+
+const cantidadDeMatches = document.querySelector("#matches")
+console.log(cantidadDeMatches)
+
+let contadorDeMatches = 1
+
+const contarMatches = () => {
+    contadorDeMatches ++
+    cantidadDeMatches.innerHTML = contadorDeMatches
+}
+
+const resetearContadorDeMatches = () => {
+    contadorDeMatches = 1
+    cantidadDeMatches.innerHTML = contadorDeMatches 
+}
+
+
 const buscarBloqueInicial = () => {
     for (let i = 0; i < grilla.length; i++) {
         for (let j = 0; j < grilla[i].length; j++) {
@@ -179,6 +196,7 @@ const cuadradosSeleccionados = (e) => {
             if (buscarBloqueInicial()) {
                 console.log("si hay match ,borrarlos");
                 borrarMatches();
+                contarMatches(); //// ejecuto contar los maches cuando encuentra adyacentes
                 cuadradoClickeado.classList.remove("seleccionar");
                 rellenarEspacios()
             } else {
@@ -349,6 +367,8 @@ const buscarMatchVertical = () => {
 const borrarMatches = () => {
     buscarMatchVertical()
     buscarMatchHorizontal()
+    //// aca tendria que reiniciar el contador de matches
+    resetearContadorDeMatches()
 
 }
 
@@ -398,7 +418,7 @@ const cuentaRegresiva = () => {
 
     } else {
         //tiempo = 30;
-        mostrarJuegoTerminado();
+        // mostrarJuegoTerminado(); //agregar modal
     }
 };
 const mostrarSeleccionDificultad = () => {
