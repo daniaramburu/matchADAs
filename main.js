@@ -1,3 +1,5 @@
+/******** Variables Selectores ***********/
+
 const grillaEnHTML = document.querySelector(".grilla");
 const botonFacil = document.getElementById("facil");
 const botonMedio = document.getElementById("medio");
@@ -6,9 +8,7 @@ const reiniciarJuego = document.getElementById("reiniciar-juego");
 const buscarMatches = document.getElementById("buscar-matches");
 const contenedorBotonFacil = document.getElementById("contenedor-boton-facil");
 const contenedorBotonMedio = document.getElementById("contenedor-boton-medio");
-const contenedorBotonDificil = document.getElementById(
-    "contenedor-boton-dificil"
-);
+const contenedorBotonDificil = document.getElementById( "contenedor-boton-dificil");
 const contenedorGrilla = document.querySelector('.contenedor-grilla')
 
 botonFacil.onclick = () => {
@@ -82,6 +82,8 @@ const buscarBloqueInicial = () => {
     }
     return false;
 };
+
+/********************Crear y rellenar la grilla ***************/
 
 const items = ["🐔", "🐣", "🐤", "🐥", "🦉", "🦢"];
 
@@ -362,6 +364,10 @@ const borrarMatches = () => {
 // const obtenerCuadrado = (x, y) => {
 //     return $(`.cuadrado[data-x="${x}"][data-y="${y}"]`)
 // }
+
+
+
+
 
 
 
