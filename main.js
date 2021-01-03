@@ -70,6 +70,23 @@ const comenzarJuegoSinMatchesDificil = () => {
     } while (buscarBloqueInicial());
 };
 
+//------------ cuenta combos
+
+const cantidadDeMatches = document.querySelector("#matches")
+
+let contadorDeMatches = 1
+
+const contarMatches = () => {
+    contadorDeMatches ++
+    cantidadDeMatches.innerHTML = contadorDeMatches
+}
+
+const resetearContadorDeMatches = () => {
+    contadorDeMatches = 1
+    cantidadDeMatches.innerHTML = contadorDeMatches 
+}
+
+
 const buscarBloqueInicial = () => {
     for (let i = 0; i < grilla.length; i++) {
         for (let j = 0; j < grilla[i].length; j++) {
@@ -155,6 +172,7 @@ const cuadradosSeleccionados = (e) => {
             intercambiarCuadrados(cuadradoClickeado, e.target);
             if (buscarBloqueInicial()) {
                 borrarMatches();
+                contarMatches(); //// ejecuto contar los maches cuando encuentra adyacentes
                 cuadradoClickeado.classList.remove("seleccionar");
                 rellenarEspacios()
             } else {
@@ -175,25 +193,30 @@ const cuadradosSeleccionados = (e) => {
 // ------------------RELLENAR GRILLA
 
 const rellenarEspacios = () => {
-    const todosLosCuadrados = document.querySelectorAll('.grilla>div')
-    if (buscarBloqueInicial) {
-        for (let cuadrado of todosLosCuadrados) {
-            let x = Number(cuadrado.dataset.x)
-            let y = Number(cuadrado.dataset.y)
-            if (cuadrado.innerHTML === '') {
-                grilla[x][y] = obtenerItemAlAzar(items);
-                setTimeout(() => {
-                    cuadrado.innerHTML = grilla[x][y]
-                    if (buscarBloqueInicial()) {
-                        rellenarEspacios();
-                        borrarMatches()
-                    }
-                }, 900);
+        const todosLosCuadrados = document.querySelectorAll('.grilla>div') //seleccionamos cada cuadrado de html
+        console.log(todosLosCuadrados)
+        if (buscarBloqueInicial) {
+            for (let cuadrado of todosLosCuadrados) { //recorremos los cuadrados
+                let x = Number(cuadrado.dataset.x) // seleccionamos la data
+                let y = Number(cuadrado.dataset.y) //seleccionamos la data
+                if (cuadrado.innerHTML === '') { //si hay cuadrados vacios
+                    grilla[x][y] = obtenerItemAlAzar(items); // los rellenamos con el array de emojis en js
+                    setTimeout(() => {
+                        cuadrado.innerHTML = grilla[x][y] //rellenamos los cuadrados vacios en html 
+                        console.log(cuadrado.innerHTML = grilla[x][y])
+                        // if (buscarBloqueInicial()) {    // COMENTE ESTE CODIGO Y 
+                        //     rellenarEspacios();         //  EMPEZO A FUNCIONAR
+                        //     borrarMatches()             //  EL RESETEO DEL CONTADOR DE MACHES
+                        // }                               //  PERO A VECES SE RELLENAN CON MATCHES
+                        resetearContadorDeMatches()
+                        console.log('se resetea')
+                    }, 900); //tiempo que demora en rellenar
+                }
             }
         }
 
     }
-}
+//borre unas llaves????
 
 //INTERCAMBIAR CUADRADOS
 
@@ -227,6 +250,7 @@ const intercambiarCuadrados = (cuadrado1, cuadrado2) => {
         cuadrado2.dataset.x = datax1;
     }
 };
+
 const sonAdyacentes = (cuadrado1, cuadrado2) => {
     const datax1 = Number(cuadrado1.dataset.x);
     const datax2 = Number(cuadrado2.dataset.x);
@@ -306,6 +330,9 @@ const borrarMatches = () => {
 
     buscarMatchVertical()
     buscarMatchHorizontal()
+    // resetearContadorDeMatches()
+    // console.log('se resetea') // lo saco de aqui por que no siempre funcionaba, si se hacian dos grillas no se reseteaba. lo lleve a rellenar grilla
+
 }
 
 // ------------------------------------INICIO MODALES
@@ -401,6 +428,8 @@ btnReiniciarJuegoTerminado.onclick = () => {
         comenzarJuego()
         ocultarJuegoTerminado()
     }
+    resetearContadorDeMatches()
+    
 }
 
 botonCancelarDeModal.onclick = () => {
