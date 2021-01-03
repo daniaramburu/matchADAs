@@ -21,7 +21,7 @@ botonInformacion.onclick = () => {
 
 //para reniciar tiempo ,puntos y combos
 const comenzarJuego = () => {
-    tiempo = 30
+    tiempo = 60
     cuentaRegresiva()
 }
 
@@ -77,13 +77,13 @@ const cantidadDeMatches = document.querySelector("#matches")
 let contadorDeMatches = 1
 
 const contarMatches = () => {
-    contadorDeMatches ++
+    contadorDeMatches++
     cantidadDeMatches.innerHTML = contadorDeMatches
 }
 
 const resetearContadorDeMatches = () => {
     contadorDeMatches = 1
-    cantidadDeMatches.innerHTML = contadorDeMatches 
+    cantidadDeMatches.innerHTML = contadorDeMatches
 }
 
 
@@ -204,11 +204,15 @@ const rellenarEspacios = () => {
                     setTimeout(() => {
                         cuadrado.innerHTML = grilla[x][y] //rellenamos los cuadrados vacios en html 
                         console.log(cuadrado.innerHTML = grilla[x][y])
-                        // if (buscarBloqueInicial()) {    // COMENTE ESTE CODIGO Y 
-                        //     rellenarEspacios();         //  EMPEZO A FUNCIONAR
-                        //     borrarMatches()             //  EL RESETEO DEL CONTADOR DE MACHES
-                        // }                               //  PERO A VECES SE RELLENAN CON MATCHES
-                        resetearContadorDeMatches()
+                        if (buscarBloqueInicial()) { // COMENTE ESTE CODIGO Y 
+                            rellenarEspacios(); //  EMPEZO A FUNCIONAR
+
+                            borrarMatches() //  EL RESETEO DEL CONTADOR DE MACHES
+                        } else { // ***aca agregue el else para que anden las dos funciones :)  para que rellene sin matches***
+
+                            //  PERO A VECES SE RELLENAN CON MATCHES
+                            resetearContadorDeMatches()
+                        }
                         console.log('se resetea')
                     }, 900); //tiempo que demora en rellenar
                 }
@@ -216,7 +220,7 @@ const rellenarEspacios = () => {
         }
 
     }
-//borre unas llaves????
+    //borre unas llaves????
 
 //INTERCAMBIAR CUADRADOS
 
@@ -330,8 +334,8 @@ const borrarMatches = () => {
 
     buscarMatchVertical()
     buscarMatchHorizontal()
-    // resetearContadorDeMatches()
-    // console.log('se resetea') // lo saco de aqui por que no siempre funcionaba, si se hacian dos grillas no se reseteaba. lo lleve a rellenar grilla
+        // resetearContadorDeMatches()
+        // console.log('se resetea') // lo saco de aqui por que no siempre funcionaba, si se hacian dos grillas no se reseteaba. lo lleve a rellenar grilla
 
 }
 
@@ -372,7 +376,7 @@ AJugar.onclick = () => {
 
 // ------------------ CUENTA REGRESIVA
 
-let tiempo = 30;
+let tiempo = 60;
 const tiempoHtml = document.querySelector(".tiempo");
 const cuentaRegresiva = () => {
     tiempoHtml.innerHTML = `0 : ${tiempo}`;
@@ -429,7 +433,7 @@ btnReiniciarJuegoTerminado.onclick = () => {
         ocultarJuegoTerminado()
     }
     resetearContadorDeMatches()
-    
+
 }
 
 botonCancelarDeModal.onclick = () => {
