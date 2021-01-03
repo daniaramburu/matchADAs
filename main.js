@@ -88,9 +88,9 @@ const comenzarJuegoSinMatchesDificil = () => {
     } while (buscarBloqueInicial());
 };
 
+//------------ cuenta combos
 
 const cantidadDeMatches = document.querySelector("#matches")
-console.log(cantidadDeMatches)
 
 let contadorDeMatches = 1
 
@@ -231,11 +231,12 @@ const rellenarEspacios = () => {
                     setTimeout(() => {
                         cuadrado.innerHTML = grilla[x][y] //rellenamos los cuadrados vacios en html 
                         console.log(cuadrado.innerHTML = grilla[x][y])
-                        if (buscarBloqueInicial()) {
-                            rellenarEspacios();
-                            borrarMatches()
-
-                        }
+                        // if (buscarBloqueInicial()) {    // COMENTE ESTE CODIGO Y 
+                        //     rellenarEspacios();         //  EMPEZO A FUNCIONAR
+                        //     borrarMatches()             //  EL RESETEO DEL CONTADOR DE MACHES
+                        // }                               //  PERO A VECES SE RELLENAN CON MATCHES
+                        resetearContadorDeMatches()
+                        console.log('se resetea')
                     }, 700); //tiempo que demora en rellenar
                 }
             }
@@ -277,6 +278,7 @@ const intercambiarCuadrados = (cuadrado1, cuadrado2) => {
         cuadrado2.dataset.x = datax1;
     }
 };
+
 const sonAdyacentes = (cuadrado1, cuadrado2) => {
     const datax1 = Number(cuadrado1.dataset.x);
     const datax2 = Number(cuadrado2.dataset.x);
@@ -324,6 +326,8 @@ const buscarMatchHorizontal = () => {
                 //divTres.style.backgroundColor = "yellow";
                 divTres.innerHTML = ""; //elimina los match en html
                 grilla[i][j + 2] = null; //elimina los match en js
+
+               
             }
         }
     }
@@ -358,6 +362,7 @@ const buscarMatchVertical = () => {
                 //tres.style.backgroundColor = "red";
                 tres.innerHTML = ""; //elimina los elementos en html
                 grilla[i + 2][j] = null; //elimina los elementos en js
+
             }
         }
     }
@@ -367,8 +372,8 @@ const buscarMatchVertical = () => {
 const borrarMatches = () => {
     buscarMatchVertical()
     buscarMatchHorizontal()
-    //// aca tendria que reiniciar el contador de matches
-    resetearContadorDeMatches()
+    // resetearContadorDeMatches()
+    // console.log('se resetea') // lo saco de aqui por que no siempre funcionaba, si se hacian dos grillas no se reseteaba. lo lleve a rellenar grilla
 
 }
 
@@ -445,6 +450,8 @@ botonReiniciar.onclick = () => {
     mostrarModalReiniciarJuego();
     console.log("esta clickeado")
     tiempo = 0
+    resetearContadorDeMatches()
+    
 }
 
 botonCancelarDeModal.onclick = () => {
