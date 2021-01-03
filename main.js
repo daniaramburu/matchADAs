@@ -15,57 +15,42 @@ const botonCancelarDeModal = document.getElementById('cancelar');
 const botonReiniciarDeModal = document.getElementById('reiniciar');
 const botonReiniciar = document.querySelector('.reiniciar');
 
-
-
 botonInformacion.onclick = () => {
     mostrarBienvenida();
+}
+
+//para reniciar tiempo ,puntos y combos
+const comenzarJuego = () => {
+    tiempo = 30
+    cuentaRegresiva()
 }
 
 botonFacil.onclick = () => {
     comenzarJuegoSinMatchesFacil();
     ocultarSeleccionDificultad();
-    tiempo = 30
-    cuentaRegresiva()
-
+    comenzarJuego()
     mostrarReloj();
-
     contenedorGrilla.classList.add('grilla-facil')
 
-    // reiniciarJuego.classList.add("facil");
 };
 
 botonMedio.onclick = () => {
     comenzarJuegoSinMatchesMedio();
     ocultarSeleccionDificultad();
-    tiempo = 30
-    cuentaRegresiva()
-
+    comenzarJuego()
     mostrarReloj();
-
-
     contenedorGrilla.classList.add('grilla-media')
-
-    // ocultarBotones();
-    // reiniciarJuego.classList.add("medio");
-};
-
+}
 botonDificil.onclick = () => {
     comenzarJuegoSinMatchesDificil();
     ocultarSeleccionDificultad();
-    tiempo = 30
-    cuentaRegresiva()
-
+    comenzarJuego()
     mostrarReloj();
-
-
     contenedorGrilla.classList.add('grilla-dificil')
-        // reiniciarJuego.classList.add("dificil");
-
 };
 
 const comenzarJuegoSinMatchesFacil = () => {
     do {
-
         generarGrilla(9, 9);
         agregarGrillaAHTML(9, 9);
     } while (buscarBloqueInicial());
@@ -73,7 +58,6 @@ const comenzarJuegoSinMatchesFacil = () => {
 
 const comenzarJuegoSinMatchesMedio = () => {
     do {
-
         generarGrilla(8, 8);
         agregarGrillaAHTML(8, 8);
     } while (buscarBloqueInicial());
@@ -81,8 +65,6 @@ const comenzarJuegoSinMatchesMedio = () => {
 
 const comenzarJuegoSinMatchesDificil = () => {
     do {
-        //vaciarGrilla();
-
         generarGrilla(7, 7);
         agregarGrillaAHTML(7, 7);
     } while (buscarBloqueInicial());
@@ -124,8 +106,6 @@ const obtenerItemAlAzar = (items) => {
 
 // ----------- GENERAR GRILLA
 
-//podriamos cambiar el nombre a generarGrillaJs ?
-
 const generarGrilla = (ancho, alto) => {
     grilla = [];
     for (let i = 0; i < ancho; i++) {
@@ -164,20 +144,16 @@ const agregarGrillaAHTML = (ancho) => {
             grillaEnHTML.appendChild(generarCuadrado(i, j, listaDeEmojis));
         }
     }
-    // console.log("aca esta la lista de mierda", listaDeEmojis);
 };
 
+// ------------------ SELECCIONAR CUADRADO
 
-
-////////////////////////////////////
 const cuadradosSeleccionados = (e) => {
     let cuadradoClickeado = document.querySelector(".seleccionar");
-    //si esta seleccionado
     if (cuadradoClickeado) {
         if (sonAdyacentes(cuadradoClickeado, e.target)) {
             intercambiarCuadrados(cuadradoClickeado, e.target);
             if (buscarBloqueInicial()) {
-                console.log("si hay match ,borrarlos");
                 borrarMatches();
                 cuadradoClickeado.classList.remove("seleccionar");
                 rellenarEspacios()
@@ -191,40 +167,36 @@ const cuadradosSeleccionados = (e) => {
             e.target.classList.add("seleccionar");
         }
     } else {
-        console.log("cuadrado selccionado");
+
         e.target.classList.add("seleccionar");
-
-
     }
 };
 
-
-//rellenar la grilla 
+// ------------------RELLENAR GRILLA
 
 const rellenarEspacios = () => {
-        const todosLosCuadrados = document.querySelectorAll('.grilla>div') //seleccionamos cada cuadrado de html
-        console.log(todosLosCuadrados)
-        if (buscarBloqueInicial) {
-            for (let cuadrado of todosLosCuadrados) { //recorremos los cuadrados
-                let x = Number(cuadrado.dataset.x) // seleccionamos la data
-                let y = Number(cuadrado.dataset.y) //seleccionamos la data
-                if (cuadrado.innerHTML === '') { //si hay cuadrados vacios
-                    grilla[x][y] = obtenerItemAlAzar(items); // los rellenamos con el array de emojis en js
-                    setTimeout(() => {
-                        cuadrado.innerHTML = grilla[x][y] //rellenamos los cuadrados vacios en html 
-                        console.log(cuadrado.innerHTML = grilla[x][y])
-                        if (buscarBloqueInicial()) {
-                            rellenarEspacios();
-                            borrarMatches()
-
-                        }
-                    }, 700); //tiempo que demora en rellenar
-                }
+    const todosLosCuadrados = document.querySelectorAll('.grilla>div')
+    if (buscarBloqueInicial) {
+        for (let cuadrado of todosLosCuadrados) {
+            let x = Number(cuadrado.dataset.x)
+            let y = Number(cuadrado.dataset.y)
+            if (cuadrado.innerHTML === '') {
+                grilla[x][y] = obtenerItemAlAzar(items);
+                setTimeout(() => {
+                    cuadrado.innerHTML = grilla[x][y]
+                    if (buscarBloqueInicial()) {
+                        rellenarEspacios();
+                        borrarMatches()
+                    }
+                }, 900);
             }
-
         }
+
     }
-    //////////////////////////////////////////////////////////////////////////////////////////////////
+}
+
+//INTERCAMBIAR CUADRADOS
+
 const intercambiarCuadrados = (cuadrado1, cuadrado2) => {
     const datax1 = Number(cuadrado1.dataset.x);
     const datax2 = Number(cuadrado2.dataset.x);
@@ -232,10 +204,6 @@ const intercambiarCuadrados = (cuadrado1, cuadrado2) => {
     const datay2 = Number(cuadrado2.dataset.y);
 
     const tamanio = 50;
-    // La posicion de 1 es data1 * tamanio
-    // Si quiero que 1 ocupe el espacio que antes ocupaba 2
-    // La nueva posicion de 1 debe ser data2 * tamanio
-
 
     //  modifico la grilla en JS
     let variableTemporal = grilla[datax1][datay1];
@@ -270,18 +238,15 @@ const sonAdyacentes = (cuadrado1, cuadrado2) => {
         (datay1 === datay2 && datax1 === datax2 + 1) ||
         (datay1 === datay2 && datax1 === datax2 - 1)
     ) {
-        console.log("son adyacentes");
         return true;
     } else {
-        console.log("NO son adyacentes");
+
         return false;
     }
 };
 
-
 const buscarMatchHorizontal = () => {
-    //encuentra los match de manera horizontal, y los borra
-    //de html y js
+
     for (let i = 0; i < grilla.length; i++) {
         for (let j = 0; j < grilla[i].length; j++) {
             if (
@@ -289,23 +254,18 @@ const buscarMatchHorizontal = () => {
                 grilla[i][j + 1] === grilla[i][j + 2]
             ) {
                 const div = document.querySelector(`div[data-x="${i}"][data-y="${j}"]`);
-                //div.style.backgroundColor = "yellow";
-
-                div.innerHTML = ""; //elimina los match en html
-                grilla[i][j] = null; //elimina los match en js
+                div.innerHTML = "";
+                grilla[i][j] = null;
                 const divDos = document.querySelector(
                     `div[data-x="${i}"][data-y="${j + 1}"]`
                 );
-
-                //divDos.style.backgroundColor = "yellow";
-                divDos.innerHTML = ""; //elimina los match en html
-                grilla[i][j + 1] = null; //elimina los match en js
+                divDos.innerHTML = "";
+                grilla[i][j + 1] = null;
                 const divTres = document.querySelector(
                     `div[data-x="${i}"][data-y="${j + 2}"]`
                 );
-                //divTres.style.backgroundColor = "yellow";
-                divTres.innerHTML = ""; //elimina los match en html
-                grilla[i][j + 2] = null; //elimina los match en js
+                divTres.innerHTML = "";
+                grilla[i][j + 2] = null;
             }
         }
     }
@@ -313,8 +273,7 @@ const buscarMatchHorizontal = () => {
 };
 const buscarMatchVertical = () => {
 
-    //encuentra los match de manera vertical, y los borra
-    //de html y js
+
     for (let i = 0; i < grilla.length; i++) {
         for (let j = 0; j < grilla[i].length; j++) {
             if (
@@ -324,22 +283,19 @@ const buscarMatchVertical = () => {
                 grilla[i][j] === grilla[i + 2][j]
             ) {
                 const uno = document.querySelector(`div[data-x="${i}"][data-y="${j}"]`);
-                //uno.style.backgroundColor = "red";
-                uno.innerHTML = ""; //elimina los elementos en html
-                grilla[i][j] = null; //elimina los elementos en js
+                uno.innerHTML = "";
+                grilla[i][j] = null;
                 const dos = document.querySelector(
                     `div[data-x="${i + 1}"][data-y="${j}"]`
                 );
-                //dos.style.backgroundColor = "red";
-                dos.innerHTML = ""; //elimina los elementos en html
-                grilla[i + 1][j] = null; //elimina los elementos en js
-
+                dos.innerHTML = "";
+                grilla[i + 1][j] = null;
                 const tres = document.querySelector(
                     `div[data-x="${i + 2}"][data-y="${j}"]`
                 );
-                //tres.style.backgroundColor = "red";
-                tres.innerHTML = ""; //elimina los elementos en html
-                grilla[i + 2][j] = null; //elimina los elementos en js
+                tres.innerHTML = "";
+                grilla[i + 2][j] = null;
+
             }
         }
     }
@@ -347,22 +303,19 @@ const buscarMatchVertical = () => {
 };
 
 const borrarMatches = () => {
+
     buscarMatchVertical()
     buscarMatchHorizontal()
-
 }
-
-
 
 // ------------------------------------INICIO MODALES
 const modalBienvenida = document.querySelector("#contenedor-modal-bienvenida");
 const modalJuegoTerminado = document.querySelector('#contenedor-modal-final');
 const AJugar = document.getElementById("boton-jugar");
-// const botonCruz = document.querySelector(".delete");
 const modalDificultad = document.querySelector("#contenedor-modal-dificultad");
 const modalDificultadInterior = document.querySelector(".modal-dificultad");
+const btnReiniciarJuegoTerminado = document.querySelector('.btn-reniciar-juego-terminado')
 
-//const botonCerrarDificultad = document.querySelector("#cerrar-dificultad");
 
 AJugar.onclick = () => {
     ocultarBienvenida();
@@ -381,29 +334,34 @@ const ocultarSeleccionDificultad = () => {
     modalDificultad.classList.add("ocultar");
 };
 
+const ocultarJuegoTerminado = () => {
+    modalJuegoTerminado.classList.add("ocultar");
+};
 
 AJugar.onclick = () => {
     ocultarBienvenida();
     modalDificultadInterior.classList.add("is-active");
 };
 
-/**************cuenta regresiva */
+// ------------------ CUENTA REGRESIVA
+
 let tiempo = 30;
 const tiempoHtml = document.querySelector(".tiempo");
 const cuentaRegresiva = () => {
     tiempoHtml.innerHTML = `0 : ${tiempo}`;
     if (tiempo > 0) {
         tiempo--;
-        setTimeout(cuentaRegresiva, 1000);
-
+        contadorTiempo = setTimeout(cuentaRegresiva, 1000);
     } else {
-        //tiempo = 30;
-        mostrarJuegoTerminado();
+        mostrarJuegoTerminado()
     }
-};
+}
+
+const limpiarTiempo = () => {
+    clearTimeout(contadorTiempo);
+}
 const mostrarSeleccionDificultad = () => {
     modalDificultad.classList.remove("ocultar");
-
 }
 
 const mostrarReloj = () => {
@@ -418,13 +376,31 @@ const mostrarModalReiniciarJuego = () => {
 const ocultarModalReiniciarJuego = () => {
     modalReiniciar.classList.add("ocultar");
     modalReiniciar.classList.remove("is-active");
+}
 
+const mostrarJuegoTerminado = () => {
+    modalJuegoTerminado.classList.remove('ocultar')
 }
 
 botonReiniciar.onclick = () => {
     mostrarModalReiniciarJuego();
-    console.log("esta clickeado")
-    tiempo = 0
+    limpiarTiempo()
+}
+
+btnReiniciarJuegoTerminado.onclick = () => {
+    if (contenedorGrilla.classList.contains("grilla-facil")) {
+        comenzarJuegoSinMatchesFacil()
+        comenzarJuego()
+        ocultarJuegoTerminado()
+    } else if (contenedorGrilla.classList.contains("grilla-media")) {
+        comenzarJuegoSinMatchesMedio()
+        comenzarJuego()
+        ocultarJuegoTerminado()
+    } else if (contenedorGrilla.classList.contains("grilla-dificil")) {
+        comenzarJuegoSinMatchesDificil()
+        comenzarJuego()
+        ocultarJuegoTerminado()
+    }
 }
 
 botonCancelarDeModal.onclick = () => {
@@ -439,8 +415,6 @@ botonReiniciarDeModal.onclick = () => {
         contenedorGrilla.classList.remove('grilla-media')
         contenedorGrilla.classList.remove('grilla-dificil')
     }
-
-
     ocultarModalReiniciarJuego();
 
 }
