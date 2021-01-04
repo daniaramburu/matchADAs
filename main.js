@@ -23,6 +23,7 @@ botonInformacion.onclick = () => {
 const comenzarJuego = () => {
     tiempo = 60
     cuentaRegresiva()
+    resetearElPuntaje()
 }
 
 botonFacil.onclick = () => {
@@ -85,6 +86,31 @@ const resetearContadorDeMatches = () => {
     contadorDeMatches = 1
     cantidadDeMatches.innerHTML = contadorDeMatches
 }
+
+
+//----------------cuenta puntaje
+
+const puntos = document.querySelector("#puntos")
+
+
+let puntaje = 0
+
+const sumarPuntaje = () => {
+    puntaje += 300 * contadorDeMatches
+    puntos.innerHTML = puntaje
+}
+
+const resetearElPuntaje = () => {
+    puntaje = 0
+    puntos.innerHTML = puntaje
+}
+
+const puntajeFinDeJuego = document.querySelector("#puntaje-final")
+
+const mostrarPuntajeFinal = () => {
+    puntajeFinDeJuego.innerHTML = puntaje
+}
+
 
 
 const buscarBloqueInicial = () => {
@@ -173,6 +199,7 @@ const cuadradosSeleccionados = (e) => {
             if (buscarBloqueInicial()) {
                 borrarMatches();
                 contarMatches(); //// ejecuto contar los maches cuando encuentra adyacentes
+                sumarPuntaje() 
                 cuadradoClickeado.classList.remove("seleccionar");
                 rellenarEspacios()
             } else {
@@ -193,14 +220,13 @@ const cuadradosSeleccionados = (e) => {
 // ------------------RELLENAR GRILLA
 
 const rellenarEspacios = () => {
-        const todosLosCuadrados = document.querySelectorAll('.grilla>div') //seleccionamos cada cuadrado de html
-        console.log(todosLosCuadrados)
-        if (buscarBloqueInicial) {
-            for (let cuadrado of todosLosCuadrados) { //recorremos los cuadrados
-                let x = Number(cuadrado.dataset.x) // seleccionamos la data
-                let y = Number(cuadrado.dataset.y) //seleccionamos la data
-                if (cuadrado.innerHTML === '') { //si hay cuadrados vacios
-                    grilla[x][y] = obtenerItemAlAzar(items); // los rellenamos con el array de emojis en js
+        const todosLosCuadrados = document.querySelectorAll('.grilla>div') 
+            if (buscarBloqueInicial) {
+            for (let cuadrado of todosLosCuadrados) { 
+                let x = Number(cuadrado.dataset.x) 
+                let y = Number(cuadrado.dataset.y) 
+                if (cuadrado.innerHTML === '') { 
+                    grilla[x][y] = obtenerItemAlAzar(items); 
                     setTimeout(() => {
                         cuadrado.innerHTML = grilla[x][y] //rellenamos los cuadrados vacios en html 
                         console.log(cuadrado.innerHTML = grilla[x][y])
@@ -220,7 +246,6 @@ const rellenarEspacios = () => {
         }
 
     }
-    //borre unas llaves????
 
 //INTERCAMBIAR CUADRADOS
 
@@ -323,7 +348,6 @@ const buscarMatchVertical = () => {
                 );
                 tres.innerHTML = "";
                 grilla[i + 2][j] = null;
-
             }
         }
     }
@@ -334,9 +358,6 @@ const borrarMatches = () => {
 
     buscarMatchVertical()
     buscarMatchHorizontal()
-        // resetearContadorDeMatches()
-        // console.log('se resetea') // lo saco de aqui por que no siempre funcionaba, si se hacian dos grillas no se reseteaba. lo lleve a rellenar grilla
-
 }
 
 // ------------------------------------INICIO MODALES
@@ -411,6 +432,7 @@ const ocultarModalReiniciarJuego = () => {
 
 const mostrarJuegoTerminado = () => {
     modalJuegoTerminado.classList.remove('ocultar')
+    mostrarPuntajeFinal()
 }
 
 botonReiniciar.onclick = () => {
