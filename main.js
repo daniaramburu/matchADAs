@@ -23,7 +23,7 @@ botonInformacion.onclick = () => {
 const comenzarJuego = () => {
     tiempo = 30 
     cuentaRegresiva()
-    resetearElPuntaje() /////////////////reseteo final juego
+    resetearElPuntaje()
 }
 
 botonFacil.onclick = () => {
@@ -106,7 +106,6 @@ const resetearElPuntaje = () => {
 }
 
 const puntajeFinDeJuego = document.querySelector("#puntaje-final")
-console.log(puntajeFinDeJuego)
 
 const mostrarPuntajeFinal = () => {
     puntajeFinDeJuego.innerHTML = puntaje
@@ -200,7 +199,7 @@ const cuadradosSeleccionados = (e) => {
             if (buscarBloqueInicial()) {
                 borrarMatches();
                 contarMatches(); //// ejecuto contar los maches cuando encuentra adyacentes
-                sumarPuntaje() /////////////////ta aca!
+                sumarPuntaje() 
                 cuadradoClickeado.classList.remove("seleccionar");
                 rellenarEspacios()
             } else {
@@ -315,7 +314,6 @@ const buscarMatchHorizontal = () => {
                 );
                 divTres.innerHTML = "";
                 grilla[i][j + 2] = null;
-                // sumarPuntaje() ///////////////////////////////////////////////////////
             }
         }
     }
@@ -345,8 +343,6 @@ const buscarMatchVertical = () => {
                 );
                 tres.innerHTML = "";
                 grilla[i + 2][j] = null;
-                // sumarPuntaje() ///////////////////////////////////////////////////////
-
             }
         }
     }
@@ -357,9 +353,6 @@ const borrarMatches = () => {
 
     buscarMatchVertical()
     buscarMatchHorizontal()
-    // resetearContadorDeMatches()
-    // console.log('se resetea') // lo saco de aqui por que no siempre funcionaba, si se hacian dos grillas no se reseteaba. lo lleve a rellenar grilla
-
 }
 
 // ------------------------------------INICIO MODALES
