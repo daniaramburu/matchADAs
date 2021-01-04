@@ -21,8 +21,9 @@ botonInformacion.onclick = () => {
 
 //para reniciar tiempo ,puntos y combos
 const comenzarJuego = () => {
-    tiempo = 30
+    tiempo = 30 
     cuentaRegresiva()
+    resetearElPuntaje() /////////////////reseteo final juego
 }
 
 botonFacil.onclick = () => {
@@ -85,6 +86,32 @@ const resetearContadorDeMatches = () => {
     contadorDeMatches = 1
     cantidadDeMatches.innerHTML = contadorDeMatches 
 }
+
+
+//----------------cuenta puntaje
+
+const puntos = document.querySelector("#puntos")
+
+
+let puntaje = 0
+
+const sumarPuntaje = () => {
+    puntaje += 300 * contadorDeMatches
+    puntos.innerHTML = puntaje
+}
+
+const resetearElPuntaje = () => {
+    puntaje = 0
+    puntos.innerHTML = puntaje
+}
+
+const puntajeFinDeJuego = document.querySelector("#puntaje-final")
+console.log(puntajeFinDeJuego)
+
+const mostrarPuntajeFinal = () => {
+    puntajeFinDeJuego.innerHTML = puntaje
+}
+
 
 
 const buscarBloqueInicial = () => {
@@ -173,6 +200,7 @@ const cuadradosSeleccionados = (e) => {
             if (buscarBloqueInicial()) {
                 borrarMatches();
                 contarMatches(); //// ejecuto contar los maches cuando encuentra adyacentes
+                sumarPuntaje() /////////////////ta aca!
                 cuadradoClickeado.classList.remove("seleccionar");
                 rellenarEspacios()
             } else {
@@ -193,30 +221,27 @@ const cuadradosSeleccionados = (e) => {
 // ------------------RELLENAR GRILLA
 
 const rellenarEspacios = () => {
-        const todosLosCuadrados = document.querySelectorAll('.grilla>div') //seleccionamos cada cuadrado de html
-        console.log(todosLosCuadrados)
-        if (buscarBloqueInicial) {
-            for (let cuadrado of todosLosCuadrados) { //recorremos los cuadrados
-                let x = Number(cuadrado.dataset.x) // seleccionamos la data
-                let y = Number(cuadrado.dataset.y) //seleccionamos la data
-                if (cuadrado.innerHTML === '') { //si hay cuadrados vacios
-                    grilla[x][y] = obtenerItemAlAzar(items); // los rellenamos con el array de emojis en js
+        const todosLosCuadrados = document.querySelectorAll('.grilla>div') 
+            if (buscarBloqueInicial) {
+            for (let cuadrado of todosLosCuadrados) { 
+                let x = Number(cuadrado.dataset.x) 
+                let y = Number(cuadrado.dataset.y) 
+                if (cuadrado.innerHTML === '') { 
+                    grilla[x][y] = obtenerItemAlAzar(items); 
                     setTimeout(() => {
-                        cuadrado.innerHTML = grilla[x][y] //rellenamos los cuadrados vacios en html 
-                        console.log(cuadrado.innerHTML = grilla[x][y])
+                        cuadrado.innerHTML = grilla[x][y] 
                         // if (buscarBloqueInicial()) {    // COMENTE ESTE CODIGO Y 
                         //     rellenarEspacios();         //  EMPEZO A FUNCIONAR
                         //     borrarMatches()             //  EL RESETEO DEL CONTADOR DE MACHES
                         // }                               //  PERO A VECES SE RELLENAN CON MATCHES
                         resetearContadorDeMatches()
-                        console.log('se resetea')
-                    }, 900); //tiempo que demora en rellenar
+                    }, 900); 
                 }
             }
         }
 
     }
-//borre unas llaves????
+
 
 //INTERCAMBIAR CUADRADOS
 
@@ -290,6 +315,7 @@ const buscarMatchHorizontal = () => {
                 );
                 divTres.innerHTML = "";
                 grilla[i][j + 2] = null;
+                // sumarPuntaje() ///////////////////////////////////////////////////////
             }
         }
     }
@@ -319,6 +345,7 @@ const buscarMatchVertical = () => {
                 );
                 tres.innerHTML = "";
                 grilla[i + 2][j] = null;
+                // sumarPuntaje() ///////////////////////////////////////////////////////
 
             }
         }
@@ -407,6 +434,7 @@ const ocultarModalReiniciarJuego = () => {
 
 const mostrarJuegoTerminado = () => {
     modalJuegoTerminado.classList.remove('ocultar')
+    mostrarPuntajeFinal()
 }
 
 botonReiniciar.onclick = () => {
